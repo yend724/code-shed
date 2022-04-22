@@ -68,15 +68,17 @@ const init = () => {
 
   let previousTimestamp = 0;
   const renderScene = (timestamp?: number) => {
-    if (timestamp === undefined) {
-      timestamp = 0;
-    }
+    timestamp = timestamp || 0;
     const elapsed = (timestamp - previousTimestamp) / 1000;
     previousTimestamp = timestamp;
 
-    cubes.forEach(cube => {
+    cubes.forEach((cube, i) => {
+      const { target, speed } = cube;
+      const ts = timestamp || 0;
+      target.position.x += Math.sin((ts / 1000) + i) * 0.03;
+      target.position.y += Math.cos((ts / 1000) + i) * 0.05;
+      target.position.z += Math.sin((ts / 1000) + i) * 0.07;
       (["x", "y", "z"] as ("x" | "y" | "z")[]).forEach(r => {
-        const { target, speed } = cube;
         target.rotation[r] += elapsed * speed;
       });
     });

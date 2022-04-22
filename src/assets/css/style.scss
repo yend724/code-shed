@@ -36,8 +36,10 @@ body {
 .header {
   display: flex;
   align-items: center;
-  height: 4rem;
-  padding: 0 1rem;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.5rem;
+  min-height: 4rem;
+  padding: 0.5rem 1rem;
   text-shadow: 0 0 0.5em rgba(0, 0, 0, 0.8);
 }
 .site-title {
