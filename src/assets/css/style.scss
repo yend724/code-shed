@@ -1,0 +1,57 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  background-color: #000;
+}
+.wrapper {
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr;
+  min-height: 100vh;
+  color: #fff;
+  font-family: "BIZ UDPGothic", sans-serif;
+  font-feature-settings: "palt";
+  font-weight: normal;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+}
+.bg {
+  min-height: 100vh;
+  grid-row: 1 / 1;
+  grid-column: 1 /1;
+}
+.content {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-height: 100vh;
+  grid-row: 1 / 1;
+  grid-column: 1 /1;
+  z-index: 1;
+}
+.header {
+  display: flex;
+  align-items: center;
+  height: 4rem;
+  padding: 0 1rem;
+}
+.site-title {
+  flex-grow: 1;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.sub-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+.main {
+  padding: 2rem 1rem;
+}
+.link {
+  color: #4fc3f7;
+}
+
