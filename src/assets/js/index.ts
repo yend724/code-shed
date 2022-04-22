@@ -1,79 +1,103 @@
-// import * as THREE from "three";
+import * as THREE from "three";
 
-// const init = () => {
-//   // three.js
-//   const scene = new THREE.Scene();
+const init = () => {
+  // three.js
+  const scene = new THREE.Scene();
+  scene.fog = new THREE.Fog(0x000, 50, 150);
 
-//   const renderer = new THREE.WebGL1Renderer({
-//     canvas: document.querySelector("#bgCanvas") as HTMLCanvasElement,
-//   });
-//   renderer.setClearColor(new THREE.Color(0x000));
-//   renderer.setSize(window.innerWidth, window.innerHeight);
-//   renderer.shadowMap.enabled = true;
+  const renderer = new THREE.WebGL1Renderer({
+    canvas: document.querySelector("#bgCanvas") as HTMLCanvasElement,
+  });
+  renderer.setClearColor(new THREE.Color(0x000));
+  renderer.setSize(window.innerWidth, window.innerHeight);
 
-//   const axes = new THREE.AxesHelper(20);
-//   scene.add(axes);
+  // const axes = new THREE.AxesHelper(20);
+  // scene.add(axes);
 
-//   const planeGeometory = new THREE.PlaneGeometry(60, 20);
-//   const planeMaterial = new THREE.MeshLambertMaterial({
-//     color: 0xffffff,
-//   });
-//   const plane = new THREE.Mesh(planeGeometory, planeMaterial);
-//   plane.rotation.x = -0.5 * Math.PI;
-//   plane.position.set(15, 0, 0);
-//   plane.receiveShadow = true;
-//   scene.add(plane);
+  const cubeGeometory = new THREE.BoxGeometry(4, 4, 4);
+  const cubeMaterial = new THREE.MeshPhysicalMaterial();
+  const range = 100;
+  const cubes = Array.from({ length: 125 }).map(_ => {
+    const cube = new THREE.Mesh(cubeGeometory, cubeMaterial);
+    const speed = 1 - Math.random() * 0.5;
+    const posX = (Math.random() - 0.5) * range;
+    const posY = (Math.random() - 0.5) * range;
+    const posZ = (Math.random() - 0.5) * range;
+    const rotX = Math.random() * Math.PI * 2;
+    const rotY = Math.random() * Math.PI * 2;
+    const rotZ = Math.random() * Math.PI * 2;
+    cube.position.set(posX, posY, posZ);
+    cube.rotation.set(rotX, rotY, rotZ);
+    scene.add(cube);
+    return {
+      target: cube,
+      speed: speed,
+    };
+  });
 
-//   const cubeGeometory = new THREE.BoxGeometry(4, 4, 4);
-//   const cubeMaterial = new THREE.MeshLambertMaterial({
-//     color: 0xff0000,
-//   });
-//   const cube = new THREE.Mesh(cubeGeometory, cubeMaterial);
-//   cube.position.set(-4, 3, 0);
-//   cube.castShadow = true;
-//   scene.add(cube);
+  const camera = new THREE.PerspectiveCamera(
+    45,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    500
+  );
+  camera.position.set(0, 0, 75);
+  camera.lookAt(scene.position);
 
-//   const sphereGeometory = new THREE.SphereGeometry(4, 20, 20);
-//   const sphereMaterial = new THREE.MeshLambertMaterial({
-//     color: 0x7777ff,
-//   });
-//   const sphere = new THREE.Mesh(sphereGeometory, sphereMaterial);
-//   sphere.position.set(20, 4, 2);
-//   sphere.castShadow = true;
-//   scene.add(sphere);
+  const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+  directionalLight.position.set(0, 100, 100);
+  scene.add(directionalLight);
 
-//   const camera = new THREE.PerspectiveCamera(
-//     45,
-//     window.innerWidth / window.innerHeight,
-//     0.1,
-//     1000
-//   );
-//   camera.position.set(-30, 40, 30);
-//   camera.lookAt(scene.position);
+  const pointLight = new THREE.PointLight(0xf1f8e9);
+  pointLight.position.set(0, 0, 0);
+  scene.add(pointLight);
 
-//   const spotLight = new THREE.SpotLight(0xffffff);
-//   spotLight.position.set(-20, 30, -5);
-//   spotLight.castShadow = true;
-//   scene.add(spotLight);
+  let mouseX = 0,
+    mouseY = 0;
+  window.addEventListener("mousemove", e => {
+    mouseX = e.clientX / window.innerWidth - 0.5;
+    mouseY = e.clientY / window.innerHeight - 0.5;
+  });
 
-//   let c = 0.02;
-//   const renderScene = () => {
-//     cube.rotation.x += c;
-//     cube.rotation.y += c;
-//     cube.rotation.z += c;
+  window.addEventListener("resize", () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    camera.lookAt(scene.position);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
 
-//     requestAnimationFrame(renderScene);
-//     renderer.render(scene, camera);
-//   };
+  let previousTimestamp = 0;
+  const renderScene = (timestamp?: number) => {
+    if (timestamp === undefined) {
+      timestamp = 0;
+    }
+    const elapsed = (timestamp - previousTimestamp) / 1000;
+    previousTimestamp = timestamp;
 
-//   renderScene();
+    cubes.forEach(cube => {
+      (["x", "y", "z"] as ("x" | "y" | "z")[]).forEach(r => {
+        const { target, speed } = cube;
+        target.rotation[r] += elapsed * speed;
+      });
+    });
 
-//   window.addEventListener("resize", () => {
-//     camera.aspect = window.innerWidth / window.innerHeight;
-//     camera.updateProjectionMatrix();
-//     camera.lookAt(scene.position);
-//     renderer.setSize(window.innerWidth, window.innerHeight);
-//   });
-// };
+    const cameraPos = {
+      x: mouseX * 30,
+      y: mouseY * 30 * -1,
+    };
+    camera.position.x += (cameraPos.x - camera.position.x) * 0.03;
+    camera.position.y += (cameraPos.y - camera.position.y) * 0.03;
+    const cameraLookAt = {
+      x: camera.position.x / 3,
+      y: camera.position.y / 3,
+      z: 0,
+    };
+    camera.lookAt(cameraLookAt.x, cameraLookAt.y, cameraLookAt.z);
+    renderer.render(scene, camera);
+    requestAnimationFrame(renderScene);
+  };
 
-// window.addEventListener("DOMContentLoaded", init);
+  renderScene();
+};
+
+window.addEventListener("DOMContentLoaded", init);

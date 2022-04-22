@@ -38,6 +38,7 @@ body {
   align-items: center;
   height: 4rem;
   padding: 0 1rem;
+  text-shadow: 0 0 0.5em rgba(0, 0, 0, 0.8);
 }
 .site-title {
   flex-grow: 1;
@@ -51,7 +52,9 @@ body {
 .main {
   padding: 2rem 1rem;
 }
+.description {
+  text-shadow: 0 0 0.5em rgba(0, 0, 0, 0.8);
+}
 .link {
   color: #4fc3f7;
 }
-

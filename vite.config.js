@@ -9,7 +9,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, root, "index.html"),
-        shed: resolve(__dirname, root, "shed/sample/index.html"),
+        "shed-sample": resolve(__dirname, root, "shed/sample/index.html"),
       },
     },
   },
