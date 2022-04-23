@@ -12,12 +12,15 @@ body {
   height: 100%;
   background-color: #000;
 }
+canvas {
+  vertical-align: bottom;
+}
 .wrapper {
   position: relative;
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 1fr;
-  height: 100%;
+  min-height: 100%;
   color: #fff;
   font-family: "BIZ UDPGothic", sans-serif;
   font-feature-settings: "palt";
@@ -55,27 +58,60 @@ body {
   text-shadow: 0 0 0.5em rgba(0, 0, 0, 0.8);
 }
 .site-title {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 600;
-  > span {
+  > * {
     white-space: nowrap;
   }
 }
-.sub-title {
-  flex-grow: 1;
-  font-size: 1rem;
+.page-title {
+  font-size: 1.5rem;
   font-weight: 600;
 }
 .main {
   padding: 2rem 1rem;
-  opacity: 0;
-  filter: blur(1rem);
+  &.__top {
+    opacity: 0;
+    filter: blur(1rem);
+  }
 }
 .description {
   text-shadow: 0 0 0.5em rgba(0, 0, 0, 0.8);
 }
-.link {
+.code-area {
+  margin-top: 1rem;
+}
+.link-list {
+  margin-top: 1.5rem;
   color: #4fc3f7;
+  list-style: square inside;
+}
+.link-item {
+  margin-top: 0.5rem;
+}
+.link {
+  position: relative;
+  font-size: 1rem;
+  @media (hover: hover) {
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 2px;
+    background-color: #4fc3f7;
+    transform: scaleX(0);
+    transition: transform .2s ease-out;
+    transform-origin: right center;
+  }
+  &:hover {
+      &::after {
+        transform: scaleX(1);
+        transform-origin: left center;
+      }
+    }
+  }
 }
 .js-slide-anime {
   position: relative;

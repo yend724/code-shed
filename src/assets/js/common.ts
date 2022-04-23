@@ -1,8 +1,7 @@
 import "destyle.css"
 import "/assets/css/style.scss";
 
-const init = () => {
-  console.log("common")
-}
+// const init = () => {
+// }
 
-window.addEventListener("DOMContentLoaded", init);
+// window.addEventListener("DOMContentLoaded", init);
