@@ -14,12 +14,15 @@ const init = () => {
   // const axes = new THREE.AxesHelper(20);
   // scene.add(axes);
 
-  const cubeGeometory = new THREE.BoxGeometry(4, 4, 4);
-  const cubeMaterial = new THREE.MeshPhysicalMaterial();
+  const cubeGeometory = new THREE.BoxGeometry(1, 1, 1);
+  const cubeMaterial = new THREE.MeshPhysicalMaterial({
+    color: 0x424242
+  });
   const range = 100;
   const cubes = Array.from({ length: 125 }).map(_ => {
     const cube = new THREE.Mesh(cubeGeometory, cubeMaterial);
     const speed = 1 - Math.random() * 0.5;
+    const scale = 1 + Math.random() * 5;
     const posX = (Math.random() - 0.5) * range;
     const posY = (Math.random() - 0.5) * range;
     const posZ = (Math.random() - 0.5) * range;
@@ -28,6 +31,7 @@ const init = () => {
     const rotZ = Math.random() * Math.PI * 2;
     cube.position.set(posX, posY, posZ);
     cube.rotation.set(rotX, rotY, rotZ);
+    cube.scale.set(scale, scale, scale);
     scene.add(cube);
     return {
       target: cube,
@@ -48,7 +52,7 @@ const init = () => {
   directionalLight.position.set(0, 100, 100);
   scene.add(directionalLight);
 
-  const pointLight = new THREE.PointLight(0xf1f8e9);
+  const pointLight = new THREE.PointLight(0x1A237E);
   pointLight.position.set(0, 0, 0);
   scene.add(pointLight);
 
@@ -75,9 +79,9 @@ const init = () => {
     cubes.forEach((cube, i) => {
       const { target, speed } = cube;
       const ts = timestamp || 0;
-      target.position.x += Math.sin((ts / 1000) + i) * 0.03;
-      target.position.y += Math.cos((ts / 1000) + i) * 0.05;
-      target.position.z += Math.sin((ts / 1000) + i) * 0.07;
+      target.position.x += Math.sin(ts / 1000 + i) * 0.03;
+      target.position.y += Math.cos(ts / 1000 + i) * 0.05;
+      target.position.z += Math.sin(ts / 1000 + i) * 0.07;
       (["x", "y", "z"] as ("x" | "y" | "z")[]).forEach(r => {
         target.rotation[r] += elapsed * speed;
       });
