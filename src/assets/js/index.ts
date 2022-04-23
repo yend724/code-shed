@@ -7,19 +7,25 @@ const init = () => {
 
   // init animation
   const initTextTl = gsap.timeline();
-  initTextTl.to("html", {
-    "--line-translateX": 0,
-    duration: 0.3,
-    ease: "power3.out",
-    delay: 0.2,
-  }).set(".js-slide-anime > .text", {
-    opacity: 1,
-  }).to("html", {
-    "--line-translateX": 100,
-    ease: "power3.out",
-    duration: 0.3,
-    delay: 0.3,
-  });
+  initTextTl
+    .to("html", {
+      "--line-scaleX": 1,
+      duration: 0.3,
+      ease: "power3.out",
+      delay: 0.2,
+    })
+    .set(".js-slide-anime > .text", {
+      opacity: 1,
+    })
+    .set(".js-slide-anime", {
+      transformOrigin: "right center",
+    })
+    .to("html", {
+      "--line-scaleX": 0,
+      ease: "power3.out",
+      duration: 0.3,
+      delay: 0.3,
+    });
 
   gsap.to(".main", {
     opacity: 1,

@@ -9,6 +9,7 @@ const bgInit = () => {
   });
   renderer.setClearColor(new THREE.Color(0x000));
   renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(window.devicePixelRatio);
 
   // const axes = new THREE.AxesHelper(20);
   // scene.add(axes);
