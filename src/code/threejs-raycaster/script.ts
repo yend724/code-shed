@@ -71,4 +71,4 @@ const init = () => {
   renderScene();
 };
 
-window.addEventListener("DOMContentLoaded", init);
+window.addEventListener("load", init);
