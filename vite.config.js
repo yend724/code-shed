@@ -4,7 +4,6 @@ import { resolve } from "path";
 const root = 'src'
 export default defineConfig({
   root: resolve(__dirname, root),
-  base: "/code-shed/",
   build: {
     outDir: resolve(__dirname, "dist"),
     rollupOptions: {
