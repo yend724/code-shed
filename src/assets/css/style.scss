@@ -4,12 +4,14 @@
   box-sizing: border-box;
 }
 :root {
+  --window-w-full: 100vw;
+  --window-h-ful: 100vh;
   --line-scaleX: 0;
 }
 html,
 body {
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
   background-color: #000;
 }
 canvas {
@@ -20,7 +22,7 @@ canvas {
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 1fr;
-  min-height: 100%;
+  min-height: 100vh;
   color: #fff;
   font-family: "BIZ UDPGothic", sans-serif;
   font-feature-settings: "palt";
@@ -70,6 +72,7 @@ canvas {
 }
 .main {
   padding: 2rem 1rem;
+  max-width: var(--window-w-full);
   &.__top {
     opacity: 0;
     filter: blur(1rem);
@@ -78,7 +81,11 @@ canvas {
 .description {
   text-shadow: 0 0 0.5em rgba(0, 0, 0, 0.8);
 }
-.code-area {
+.exmaple-area, .code-area {
+  margin-top: 1.5rem;
+  overflow: scroll;
+}
+.code + .code {
   margin-top: 1rem;
 }
 .link-list {
