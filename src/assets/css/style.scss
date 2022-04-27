@@ -21,8 +21,10 @@ summary {
   cursor: pointer;
   padding: 1em 0.6em;
   border-radius: 5px;
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+  @media (hover: hover) {
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
   }
 }
 .wrapper {

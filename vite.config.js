@@ -15,6 +15,11 @@ export default defineConfig({
           root,
           "code/threejs-raycaster/index.html"
         ),
+        "donut-selector": resolve(
+          __dirname,
+          root,
+          "code/donut-selector/index.html"
+        ),
       },
     },
   },
