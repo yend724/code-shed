@@ -20,6 +20,9 @@ export default defineConfig({
   },
   plugins: [
     handlebars({
+      context: {
+        siteTitle: 'Code Shed',
+      },
       partialDirectory: resolve(__dirname, "src", "partials"),
     }),
   ],

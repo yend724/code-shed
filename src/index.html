@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>code-shed</title>
-    {{> header }}
+    <title>{{siteTitle}}</title>
+    {{> head }}
     {{> ga }}
   </head>
   <body>
@@ -14,11 +14,7 @@
         <canvas id="bgCanvas"></canvas>
       </div>
       <div class="content">
-        <header class="header">
-          <h1 class="site-title js-slide-anime">
-            <span class="text">Code Shed</span>
-          </h1>
-        </header>
+        {{> topHeader }}
         <main class="main __top">
           <p class="description">フロントエンドエンジニアのコード置き場</p>
           <ul class="link-list">
