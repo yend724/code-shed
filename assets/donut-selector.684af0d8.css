@@ -1,0 +1,1 @@
+article p:not(h2 > *){background-color:#87ceeb}article p:not(h2 *){background-color:gray}
