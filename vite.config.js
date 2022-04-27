@@ -1,8 +1,8 @@
 import { resolve } from "path";
 import { defineConfig } from "vite";
 import handlebars from "vite-plugin-handlebars";
+import { root, pageData } from "./src/data/data";
 
-const root = "src";
 export default defineConfig({
   root: resolve(__dirname, root),
   build: {
@@ -20,8 +20,10 @@ export default defineConfig({
   },
   plugins: [
     handlebars({
-      context: {
-        siteTitle: 'Code Shed',
+      context(pagePath) {
+        return {
+          ...pageData[pagePath],
+        };
       },
       partialDirectory: resolve(__dirname, "src", "partials"),
     }),
