@@ -10,6 +10,11 @@ const pageData = {
     siteTitle: siteTitle,
     pageTitle: "Three.jsのRaycasterで交差をしらべる",
   },
+  "/code/donut-selector/index.html": {
+    title: "ドーナツセレクタ | " + siteTitle,
+    siteTitle: siteTitle,
+    pageTitle: "ドーナツセレクタ",
+  },
 };
 
 export { siteTitle, pageData, root };

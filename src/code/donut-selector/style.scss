@@ -1,0 +1,6 @@
+article p:not(h2 > *) {
+  background-color: skyblue;
+}
+article p:not(h2 *) {
+  background-color: grey;
+}
