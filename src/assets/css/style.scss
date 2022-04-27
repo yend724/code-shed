@@ -95,13 +95,13 @@ canvas {
   padding-bottom: 4px;
   background-image: linear-gradient(to right, #4fc3f7, #4fc3f7);
   background-repeat: no-repeat;
-  background-size: 0% 0.2em;
+  background-size: 0% 2px;
   background-position-x: right;
   background-position-y: 1em;
-  transition: background-size .3s ease-out;
+  transition: background-size .2s ease-out;
   @media (hover: hover) {
     &:hover {
-      background-size: 100% 0.2em;
+      background-size: 100% 2px;
       background-position-x: left;
     }
   }
