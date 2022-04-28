@@ -1,7 +1,7 @@
 import { resolve } from "path";
 import { defineConfig } from "vite";
 import handlebars from "vite-plugin-handlebars";
-import { root, pageData } from "./src/data/data";
+import { root, siteTitle, pageData } from "./src/data/data";
 
 export default defineConfig({
   root: resolve(__dirname, root),
@@ -27,6 +27,7 @@ export default defineConfig({
     handlebars({
       context(pagePath) {
         return {
+          siteTitle: siteTitle,
           ...pageData[pagePath],
         };
       },
