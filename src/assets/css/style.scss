@@ -5,13 +5,13 @@
 }
 :root {
   --window-w-full: 100vw;
-  --window-h-ful: 100vh;
+  --window-h-full: 100vh;
   --line-scaleX: 0;
 }
 html,
 body {
   width: 100%;
-  min-height: var(--window-h-ful);
+  min-height: var(--window-h-full);
   background-color: #000;
 }
 canvas {
@@ -32,7 +32,6 @@ summary {
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 1fr;
-  // min-height: var(--window-h-ful);
   color: #fff;
   font-family: "BIZ UDPGothic", sans-serif;
   font-feature-settings: "palt";
@@ -55,7 +54,7 @@ summary {
 .content {
   display: grid;
   grid-template-rows: auto 1fr;
-  min-height: var(--window-h-ful);
+  min-height: var(--window-h-full);
   grid-row: 1 / 1;
   grid-column: 1 /1;
   z-index: 1;
