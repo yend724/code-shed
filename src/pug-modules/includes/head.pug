@@ -1,0 +1,17 @@
+//- og
+meta(name="description", content=description)
+meta(property="og:site_name", content=siteName)
+meta(property="og:type", content=type)
+meta(property="og:title", content=title)
+meta(property="og:description", content=description)
+link(rel="canonical", href="https://code-shed.dev" + path)
+//- google fonts
+link(rel="preconnect", href="https://fonts.googleapis.com")
+link(rel="preconnect", href="https://fonts.https://fonts.gstatic.com", crossorigin)
+link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&display=swap")
+script(async, src="https://www.googletagmanager.com/gtag/js?id=G-5QEMC1D1CN")
+script
+  | window.dataLayer = window.dataLayer || [];
+  | function gtag(){dataLayer.push(arguments);}
+  | gtag('js', new Date());
+  | gtag('config', 'G-5QEMC1D1CN');

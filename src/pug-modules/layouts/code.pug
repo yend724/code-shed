@@ -1,0 +1,31 @@
+- siteName = "Code Shed"
+- pageTitle = "pageTitleが未入力"
+- description = "フロントエンドエンジニアのコード置き場"
+- type = "article"
+- path = "/"
+block vars
+- title = pageTitle + " | " + siteName
+doctype html
+html(lang="ja")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title #{title}
+    include /pug-modules/includes/head.pug
+  body
+    .wrapper
+      .content
+        header.header
+          div.site-title
+            a(href="/") #{siteName}
+        main.main
+          h1.page-title #{pageTitle}
+          block example
+          .code-area
+            block code-html
+            block code-css
+            block code-ts
+    block scripts
+      script(src="/assets/js/common.ts" type="module")
+      script(src="./script.ts" type="module")
