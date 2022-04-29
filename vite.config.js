@@ -10,11 +10,11 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, root, "index.pug"),
-        // "threejs-raycaster": resolve(
-        //   __dirname,
-        //   root,
-        //   "code/threejs-raycaster/index.html"
-        // ),
+        "threejs-raycaster": resolve(
+          __dirname,
+          root,
+          "code/threejs-raycaster/index.pug"
+        ),
         "donut-selector": resolve(
           __dirname,
           root,
