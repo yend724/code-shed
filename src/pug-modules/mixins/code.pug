@@ -1,0 +1,31 @@
+mixin code(extension, text)
+  - var title = ""
+  - var lang = ""
+  case extension
+    when "html"
+      - var title = "HTML"
+      - var lang = "html"
+    when "css"
+      - var title = "CSS"
+      - var lang = "css"
+    when "js"
+      - var title = "JavaScript"
+      - var lang = "js"
+    when "ts"
+      - var title = "TypeScript"
+      - var lang = "js"
+    default
+      - var title = "言語がありません"
+      - var lang = "言語がありません"
+  details.code
+    summary #{title}
+    div
+      if lang == "html"
+        pre
+          code(class="language-" + lang)
+            block
+      else
+        pre
+          code(class="language-" + lang) #{text}
+
+
