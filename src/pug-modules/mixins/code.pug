@@ -18,8 +18,9 @@ mixin code(extension, text)
       - var title = "言語がありません"
       - var lang = "言語がありません"
   details.code
-    summary #{title}
-    div
+    summary.code-title
+      span.code-title__text(data-text=title) #{title}
+    div.code-content
       if lang == "html"
         pre
           code(class="language-" + lang)

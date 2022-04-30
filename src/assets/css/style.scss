@@ -17,16 +17,6 @@ body {
 canvas {
   vertical-align: bottom;
 }
-summary {
-  cursor: pointer;
-  padding: 0.6em 0.4em;
-  border-radius: 5px;
-  @media (hover: hover) {
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
-  }
-}
 .wrapper {
   position: relative;
   display: grid;
@@ -98,10 +88,18 @@ summary {
 }
 .code-area {
   margin-top: 1.5rem;
-  overflow: scroll;
+  //overflow: scroll;
 }
 .code + .code {
   margin-top: 1rem;
+}
+.code-title {
+  cursor: pointer;
+  overflow: hidden;
+  transition: color .2s ease-out;
+  &:hover {
+    color: #90A4AE;
+  }
 }
 .link-list {
   margin-top: 1.5rem;

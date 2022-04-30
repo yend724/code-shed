@@ -1,8 +1,17 @@
-- siteName = "Code Shed"
-- description = "フロントエンドエンジニアのコード置き場"
-- type = "website"
-- path = "/"
-- title ="Code Shed"
+-
+  const codePages = [{
+    title: "ドーナツセレクタ",
+    href: "/code/donut-selector/"
+  },
+  {
+    title: "Three.jsのRaycasterで交差をしらべる",
+    href: "/code/threejs-raycaster/"
+  }]
+  const siteName = "Code Shed"
+  const description = "フロントエンドエンジニアのコード置き場"
+  const type = "website"
+  const path = "/"
+  const title ="Code Shed"
 doctype html
 html(lang="ja")
   head
@@ -18,13 +27,12 @@ html(lang="ja")
       .content
         header.header
           h1.site-title.js-slide-anime
-            span.text Code Shed
+            span.text #{siteName}
         main.main.__top
           p.description フロントエンドエンジニアのコード置き場
           ul.link-list
-            li.link-item
-              a.link(href="/code/donut-selector/") ドーナツセレクタ
-            li.link-item
-              a.link(href="/code/threejs-raycaster/") Three.jsのRaycasterで交差をしらべる
+            each page in codePages
+              li.link-item
+                a.link(href=page.href) #{page.title}
     script(src="/assets/js/common.ts" type="module")
     script(src="/assets/js/index.ts" type="module")
