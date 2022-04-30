@@ -2,6 +2,7 @@ import { resolve } from "path";
 import { defineConfig } from "vite";
 import {render} from "pug"
 import vitePluginPug from "./plugins/vite-plugin-pug";
+import vitePluginGa from "./plugins/vite-plugin-ga";
 
 const escapeHtml = (string) => {
   return string.replace(/[&'`"<>]/g, (match) => {
@@ -39,6 +40,7 @@ export default defineConfig({
   plugins: [
     vitePluginPug({
       basedir: resolve(__dirname, root),
+      pretty: true,
       filters : {
         'code-html':  (text) => {
           const rendered = render(text, {pretty: true});
@@ -46,5 +48,6 @@ export default defineConfig({
         }
       }
     }),
+    vitePluginGa("G-5QEMC1D1CN"),
   ],
 });
