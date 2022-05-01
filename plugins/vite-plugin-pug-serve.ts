@@ -6,11 +6,28 @@ import { compileFile, Options } from "pug";
 const transformPugToHtml = (
   server: ViteDevServer,
   path: string,
-  options: Options
+  options: Options,
+  locals:any
 ) => {
   let compliled: string = ""
   try {
-    compliled = compileFile(path, options)();
+    const relativePath = path.split("/src")[1].replace(".pug", ".html")
+    const { pages } = locals;
+    const current = pages.filter((page)=>{
+      if(page.path === relativePath) {
+        return {
+          path: relativePath,
+          ...page
+        }
+      }
+    })
+
+    compliled = compileFile(path, options)({
+      current: {
+        ...current[0]
+      },
+      ...locals,
+    });
     console.log("pug compile success")
   }catch (error){
     console.error(error)
@@ -20,7 +37,7 @@ const transformPugToHtml = (
   return server.transformIndexHtml(path, compliled);
 };
 
-export const vitePluginPugServe = (options: Options): Plugin => {
+export const vitePluginPugServe = (options: Options, locals:any): Plugin => {
   return {
     name: "vite-plugin-pug-serve",
     enforce: "pre",
@@ -53,7 +70,7 @@ export const vitePluginPugServe = (options: Options): Plugin => {
             return send(req, res, "404 Not Found", "html", {});
           }
 
-          const html = await transformPugToHtml(server, pugPath, options);
+          const html = await transformPugToHtml(server, pugPath, options, locals);
           return send(req, res, html, "html", {});
         } else {
           return next();

@@ -1,0 +1,28 @@
+{
+	"siteName": "Code Shed",
+	"meta": {
+		"description": "フロントエンドエンジニアのコード置き場"
+	},
+	"pages": [
+		{
+			"pageTitle": "Code Shed",
+			"path": "/index.html",
+			"category": "top"
+		},
+		{
+			"pageTitle": "CSSのtext-shadowでテキストの3D表現",
+			"path": "/code/css-textshadow-3d/index.html",
+			"category": "code"
+		},
+		{
+			"pageTitle": "ドーナツセレクタ",
+			"path": "/code/donut-selector/index.html",
+			"category": "code"
+		},
+		{
+			"pageTitle": "Three.jsのRaycasterで交差をしらべる",
+			"path": "/code/threejs-raycaster/index.html",
+			"category": "code"
+		}
+	]
+}

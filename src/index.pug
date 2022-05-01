@@ -1,26 +1,6 @@
--
-  const codePages = [{
-    title: "CSSのtext-shadowでテキストの3D表現",
-    href: "/code/css-textshadow-3d/"
-  },{
-    title: "ドーナツセレクタ",
-    href: "/code/donut-selector/"
-  },{
-    title: "Three.jsのRaycasterで交差をしらべる",
-    href: "/code/threejs-raycaster/"
-  }]
-  const siteName = "Code Shed"
-  const description = "フロントエンドエンジニアのコード置き場"
-  const type = "website"
-  const path = "/"
-  const title ="Code Shed"
 doctype html
 html(lang="ja")
   head
-    meta(charset="UTF-8")
-    meta(http-equiv="X-UA-Compatible", content="IE=edge")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title #{title}
     include /pug-modules/includes/head.pug
   body
     .wrapper
@@ -31,10 +11,11 @@ html(lang="ja")
           h1.site-title.js-slide-anime
             span.text #{siteName}
         main.main.__top
-          p.description フロントエンドエンジニアのコード置き場
+          p.description #{meta.description}
           ul.link-list
-            each page in codePages
-              li.link-item
-                a.link(href=page.href) #{page.title}
+            each page in pages
+              if page.category === "code"
+                li.link-item
+                  a.link(href=page.path) #{page.pageTitle}
     script(src="/assets/js/common.ts" type="module")
     script(src="/assets/js/index.ts" type="module")
