@@ -82,13 +82,15 @@ canvas {
 }
 .exmaple-area {
   margin-top: 1.5rem;
+  margin-left: -1rem;
+  margin-right: -1rem;
   padding: 1rem;
-  border-radius: 5px;
-  border: 1px dashed #fff;
+  border-top: 1px dashed #90A4AE;
+  border-bottom: 1px dashed #90A4AE;
+  overflow: scroll;
 }
 .code-area {
   margin-top: 1.5rem;
-  //overflow: scroll;
 }
 .code + .code {
   margin-top: 1rem;
