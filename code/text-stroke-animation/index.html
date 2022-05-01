@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>svgでstrokeのテキストアニメーション | Code Shed</title>
+    <meta name="description" content="フロントエンドエンジニアのコード置き場">
+    <meta property="og:site_name" content="Code Shed">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="svgでstrokeのテキストアニメーション | Code Shed">
+    <meta property="og:description" content="フロントエンドエンジニアのコード置き場">
+    <meta property="og:image" content="https://code-shed.dev/img/og.png">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:site" content="@yend724">
+    <meta property="twitter:creator" content="@yend724">
+    <link rel="canonical" href="https://code-shed.dev/code/text-stroke-animation/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&amp;display=swap">
+    <script type="module" crossorigin src="/assets/common.0abbd28d.js"></script>
+    <link rel="stylesheet" href="/assets/common.e14c1abb.css">
+    <link rel="stylesheet" href="/assets/src-code-text-stroke-animation-index.ac7b0c2d.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5QEMC1D1CN"></script>
+    <script>window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag("js", new Date());
+          gtag("config", "G-5QEMC1D1CN");</script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="content">
+        <header class="header">
+          <div class="site-title"><a href="/">Code Shed</a></div>
+        </header>
+        <main class="main">
+          <h1 class="page-title">svgでstrokeのテキストアニメーション</h1>
+          <div class="exmaple-area">
+            <div class="container">
+              <svg viewBox="0 0 800 600">
+                <symbol id="symbol-text">
+                  <text text-anchor="middle" x="50%" y="50%" dy=".35em">Code Shed</text>
+                </symbol>
+                <use class="text" xlink:href="#symbol-text"></use>
+                <use class="text" xlink:href="#symbol-text"></use>
+                <use class="text" xlink:href="#symbol-text"></use>
+                <use class="text" xlink:href="#symbol-text"></use>
+                <use class="text" xlink:href="#symbol-text"></use>
+                <use class="text" xlink:href="#symbol-text"></use>
+              </svg>
+            </div>
+          </div>
+          <div class="code-area">
+            <details class="code">
+              <summary class="code-title"><span class="code-title__text" data-text="Pug">Pug</span></summary>
+              <div class="code-content">
+                <pre><code class="language-pug">.container
+  svg(viewBox=&quot;0 0 800 600&quot;)
+    symbol#symbol-text
+      text(text-anchor=&quot;middle&quot; x=&quot;50%&quot; y=&quot;50%&quot; dy=&quot;.35em&quot;) Code Shed
+    - for(var i = 0; i &lt; 6; i++)
+      use.text(xlink:href=&quot;#symbol-text&quot;)</code></pre>
+              </div>
+            </details>
+            <details class="code">
+              <summary class="code-title"><span class="code-title__text" data-text="SCSS">SCSS</span></summary>
+              <div class="code-content">
+                <pre><code class="language-scss">.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 4/3;
+}
+svg {
+  font-size: 8rem;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.text {
+  fill: none;
+  stroke-width: 3;
+  stroke-linejoin: round;
+  stroke-dasharray: 12 88;
+  stroke-dashoffset: 0;
+  animation: anime 6s infinite linear;
+}
+.text:nth-child(5n + 1){
+  stroke: #F44336;
+  animation-delay: -1.2s;
+}
+.text:nth-child(5n + 2){
+  stroke: #2196F3;
+  animation-delay: -2.4s;
+}
+.text:nth-child(5n + 3){
+  stroke: #4CAF50;
+  animation-delay: -3.6s;
+}
+.text:nth-child(5n + 4){
+  stroke: #FF5722;
+  animation-delay: -4.8s;
+}
+.text:nth-child(5n + 5){
+  stroke: #FFEB3B;
+  animation-delay: -6s;
+}
+@keyframes anime {
+  100% {
+    stroke-dashoffset: 100;
+  }
+}</code></pre>
+              </div>
+            </details>
+          </div>
+        </main>
+      </div>
+    </div>
+    
+    
+  </body>
+</html>
