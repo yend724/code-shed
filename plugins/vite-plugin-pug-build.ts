@@ -20,12 +20,11 @@ export const vitePluginPugBuild = (options: Options, locals: any): Plugin => {
     load(id: string) {
       if (id.endsWith(".html")) {
         if (pathMap[id]) {
-          const relativePath = id.split("/src")[1];
+          const relativePath = id.split("/src")[1].replace("index.html", "");
           const { pages } = locals;
           const current = pages.filter((page)=>{
             if(page.path === relativePath) {
               return {
-                path: relativePath,
                 ...page
               }
             }

@@ -7,22 +7,22 @@
 	"pages": [
 		{
 			"pageTitle": "Code Shed",
-			"path": "/index.html",
+			"path": "/",
 			"category": "top"
 		},
 		{
 			"pageTitle": "CSSのtext-shadowでテキストの3D表現",
-			"path": "/code/css-textshadow-3d/index.html",
+			"path": "/code/css-textshadow-3d/",
 			"category": "code"
 		},
 		{
 			"pageTitle": "ドーナツセレクタ",
-			"path": "/code/donut-selector/index.html",
+			"path": "/code/donut-selector/",
 			"category": "code"
 		},
 		{
 			"pageTitle": "Three.jsのRaycasterで交差をしらべる",
-			"path": "/code/threejs-raycaster/index.html",
+			"path": "/code/threejs-raycaster/",
 			"category": "code"
 		}
 	]

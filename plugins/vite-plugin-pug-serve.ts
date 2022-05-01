@@ -11,16 +11,17 @@ const transformPugToHtml = (
 ) => {
   let compliled: string = ""
   try {
-    const relativePath = path.split("/src")[1].replace(".pug", ".html")
+    const relativePath = path.split("/src")[1].replace("index.pug", "")
     const { pages } = locals;
     const current = pages.filter((page)=>{
       if(page.path === relativePath) {
         return {
-          path: relativePath,
           ...page
         }
       }
     })
+
+    console.log(current)
 
     compliled = compileFile(path, options)({
       current: {
