@@ -19,8 +19,7 @@
     <link rel="preconnect" href="https://fonts.https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&amp;display=swap">
     <script type="module" crossorigin src="/assets/common.0abbd28d.js"></script>
-    <link rel="stylesheet" href="/assets/common.e14c1abb.css">
-    <link rel="stylesheet" href="/assets/src-code-text-stroke-animation-index.ac7b0c2d.css">
+    <link rel="stylesheet" href="/assets/common.46441fde.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5QEMC1D1CN"></script>
     <script>window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -35,20 +34,8 @@
         </header>
         <main class="main">
           <h1 class="page-title">SVGでstrokeのテキストアニメーション</h1>
-          <div class="exmaple-area">
-            <div class="container">
-              <svg viewBox="0 0 800 600">
-                <symbol id="symbol-text">
-                  <text text-anchor="middle" x="50%" y="50%" dy=".35em">Code Shed</text>
-                </symbol>
-                <use class="text" xlink:href="#symbol-text"></use>
-                <use class="text" xlink:href="#symbol-text"></use>
-                <use class="text" xlink:href="#symbol-text"></use>
-                <use class="text" xlink:href="#symbol-text"></use>
-                <use class="text" xlink:href="#symbol-text"></use>
-                <use class="text" xlink:href="#symbol-text"></use>
-              </svg>
-            </div>
+          <div class="example-area">
+            <iframe class="example-iframe" src="/iframe/code/text-stroke-animation/" title="SVGでstrokeのテキストアニメーション" loading="lazy"></iframe>
           </div>
           <div class="code-area">
             <details class="code">
@@ -57,7 +44,7 @@
                 <pre><code class="language-pug">.container
   svg(viewBox=&quot;0 0 800 600&quot;)
     symbol#symbol-text
-      text(text-anchor=&quot;middle&quot; x=&quot;50%&quot; y=&quot;50%&quot; dy=&quot;.35em&quot;) Code Shed
+      text(text-anchor=&quot;middle&quot; x=&quot;50%&quot; y=&quot;50%&quot; dy=&quot;.4em&quot;) Code Shed
     - for(var i = 0; i &lt; 6; i++)
       use.text(xlink:href=&quot;#symbol-text&quot;)</code></pre>
               </div>
