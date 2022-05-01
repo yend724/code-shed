@@ -6,7 +6,7 @@
 	},
 	"pages": [
 		{
-			"pageTitle": "svgでstrokeのテキストアニメーション",
+			"pageTitle": "SVGでstrokeのテキストアニメーション",
 			"path": "/code/text-stroke-animation/",
 			"category": "code"
 		},
