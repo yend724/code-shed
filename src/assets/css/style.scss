@@ -97,8 +97,10 @@ canvas {
   cursor: pointer;
   overflow: hidden;
   transition: color .2s ease-out;
-  &:hover {
-    color: #90A4AE;
+  @media (hover: hover) {
+    &:hover {
+      color: #90A4AE;
+    }
   }
 }
 .link-list {
