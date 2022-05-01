@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&amp;display=swap">
     <script type="module" crossorigin src="/assets/common.0abbd28d.js"></script>
     <link rel="stylesheet" href="/assets/common.e14c1abb.css">
-    <link rel="stylesheet" href="/assets/src-code-css-textshadow-3d-index.910dfa83.css">
+    <link rel="stylesheet" href="/assets/src-code-css-textshadow-3d-index.f4b773bd.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5QEMC1D1CN"></script>
     <script>window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -32,7 +32,7 @@
         <main class="main">
           <h1 class="page-title">CSSのtext-shadowでテキストの3D表現</h1>
           <div class="exmaple-area">
-            <div class="wrapper">
+            <div class="container">
               <p class="text"><span class="char" data-char="C">C</span><span class="char" data-char="S">S</span><span class="char" data-char="S">S</span>
               </p>
             </div>
@@ -41,7 +41,7 @@
             <details class="code">
               <summary class="code-title"><span class="code-title__text" data-text="Pug">Pug</span></summary>
               <div class="code-content">
-                <pre><code class="language-pug">.wrapper
+                <pre><code class="language-pug">.container
   p.text
     - var chars = [&quot;C&quot;,&quot;S&quot;,&quot;S&quot;]
     each char in chars
@@ -51,12 +51,13 @@
             <details class="code">
               <summary class="code-title"><span class="code-title__text" data-text="SCSS">SCSS</span></summary>
               <div class="code-content">
-                <pre><code class="language-scss">.wrapper {
+                <pre><code class="language-scss">@use &quot;sass:math&quot;;
+.container {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 30px 0;
-  background-color: rgba(17,17,17);
+  background-color: rgb(50, 50, 50);
 }
 .text {
   text-align: center;
@@ -65,9 +66,8 @@
   $value: ();
   @for $i from 1 through 15 {
     $num: $i + px;
-    $pct: math.div($i, 100);
     $theShadow: -$num $num 0 rgb(30, 30, 30);
-    $value: append($value, $theShadow, comma)
+    $value: append($value, $theShadow, comma);
   }
   position: relative;
   display: inline-block;
@@ -76,25 +76,25 @@
   font-size: 6rem;
   line-height: 1.1;
   letter-spacing: 0.2em;
-  transition: all .3s ease-out;
-  transform: rotate(-5deg) skew(25deg);
   text-shadow: $value;
+  transform: rotate(-5deg) skew(25deg);
+  transition: all 0.3s ease-out;
   &amp;::before {
     content: attr(data-char);
     position: absolute;
     top: 15px;
     left: -15px;
-    color: rgba(255,255,255,0.3);
+    color: rgba(255, 255, 255, 0.3);
     text-shadow: none;
     filter: blur(8px);
     z-index: -1;
-    transition: all .3s ease-out;
+    transition: all 0.3s ease-out;
   }
   @media (hover: hover) {
     &amp;:hover {
       transform: translate(5px, -5px) rotate(-5deg) skew(25deg);
       &amp;::before {
-        color: rgba(255,255,255,0.1);
+        color: rgba(255, 255, 255, 0.1);
         filter: blur(2px);
       }
     }
