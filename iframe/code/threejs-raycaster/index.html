@@ -15,9 +15,11 @@
       }
       window.addEventListener("DOMContentLoaded", openInChild)
     </script>
-    <script type="module" crossorigin src="/assets/destyle.c3737223.js"></script>
+    <script type="module" crossorigin src="/assets/iframe-code-threejs-raycaster-index.05c2c9b6.js"></script>
+    <link rel="modulepreload" href="/assets/destyle.c3737223.js">
+    <link rel="modulepreload" href="/assets/three.module.6b36eca1.js">
     <link rel="stylesheet" href="/assets/destyle.670c73c0.css">
-    <link rel="stylesheet" href="/assets/iframe-code-text-stroke-animation-index.026e46c0.css">
+    <link rel="stylesheet" href="/assets/iframe-code-threejs-raycaster-index.a7a8f8e3.css">
     <link rel="stylesheet" href="/assets/iframe.d418f1ed.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5QEMC1D1CN"></script>
     <script>window.dataLayer = window.dataLayer || [];
@@ -26,19 +28,7 @@
           gtag("config", "G-5QEMC1D1CN");</script>
   </head>
   <body onLoad="openInChild(0)">
-    <div class="container">
-      <svg viewBox="0 0 800 600">
-        <symbol id="symbol-text">
-          <text text-anchor="middle" x="50%" y="50%" dy=".4em">Code Shed</text>
-        </symbol>
-        <use class="text" xlink:href="#symbol-text"></use>
-        <use class="text" xlink:href="#symbol-text"></use>
-        <use class="text" xlink:href="#symbol-text"></use>
-        <use class="text" xlink:href="#symbol-text"></use>
-        <use class="text" xlink:href="#symbol-text"></use>
-        <use class="text" xlink:href="#symbol-text"></use>
-      </svg>
-    </div>
+    <canvas id="canvas"></canvas>
     
     
   </body>
