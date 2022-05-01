@@ -50,8 +50,8 @@ export const vitePluginPugServe = (options: Options, locals:any): Plugin => {
     configureServer(server) {
       server.middlewares.use(async (req, res, next) => {
         const root = server.config.root;
-        let fullReqPath = root + req.url;
-
+        const pathname = req.url.replace(/(\?|\#).*$/g, "");
+        let fullReqPath = root + pathname;
         if (fullReqPath.endsWith("/")) {
           fullReqPath += "index.html";
         }

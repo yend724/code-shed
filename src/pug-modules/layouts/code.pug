@@ -12,10 +12,11 @@ html(lang="ja")
         main.main
           h1.page-title #{current.pageTitle}
           block example
+            .example-area
+              iframe.example-iframe(src="/iframe" + current.path, title=current.pageTitle loading="lazy")
           .code-area
             block code-html
             block code-css
             block code-ts
     block scripts
       script(src="/assets/js/common.ts" type="module")
-      script(src="./script.ts" type="module")

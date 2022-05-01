@@ -5,7 +5,7 @@ export const getInputEntries = () => {
     ignore: ["**/src/pug-modules/**"],
   });
   const entries = pugs.reduce((acc, cur) => {
-    acc[cur.split(".pug")[0].replace(/\//g, "-")] = resolve(
+    acc[cur.split(".pug")[0].replace("src/", "").replace(/\//g, "-")] = resolve(
       __dirname,
       "../",
       cur

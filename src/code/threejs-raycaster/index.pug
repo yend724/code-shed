@@ -1,11 +1,6 @@
 extends /pug-modules/layouts/code
-block example
-  .exmaple-area
-    canvas#canvas
 block code-html
-  +code("html")
-    :code-html
-      canvas#canvas
+  +code("pug", `canvas#canvas`)
 block code-css
   +code("css", `canvas {
   border: 1px solid #efefef;

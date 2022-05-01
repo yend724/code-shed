@@ -1,17 +1,9 @@
-extends /pug-modules/layouts/code
-block code-html
-  +code("pug", `.container
-  svg(viewBox="0 0 800 600")
-    symbol#symbol-text
-      text(text-anchor="middle" x="50%" y="50%" dy=".4em") Code Shed
-    - for(var i = 0; i < 6; i++)
-      use.text(xlink:href="#symbol-text")`)
-block code-css
-  +code("scss",`.container {
+.container {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%;
   width: 100%;
   aspect-ratio: 4/3;
 }
@@ -53,4 +45,4 @@ svg {
   100% {
     stroke-dashoffset: 100;
   }
-}`)
+}
