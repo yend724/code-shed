@@ -21,8 +21,6 @@ const transformPugToHtml = (
       }
     })
 
-    console.log(current)
-
     compliled = compileFile(path, options)({
       current: {
         ...current[0]

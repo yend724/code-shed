@@ -6,9 +6,9 @@
 	},
 	"pages": [
 		{
-			"pageTitle": "Code Shed",
-			"path": "/",
-			"category": "top"
+			"pageTitle": "svgでstrokeのテキストアニメーション",
+			"path": "/code/text-stroke-animation/",
+			"category": "code"
 		},
 		{
 			"pageTitle": "CSSのtext-shadowでテキストの3D表現",
@@ -24,6 +24,11 @@
 			"pageTitle": "Three.jsのRaycasterで交差をしらべる",
 			"path": "/code/threejs-raycaster/",
 			"category": "code"
+		},
+		{
+			"pageTitle": "Code Shed",
+			"path": "/",
+			"category": "top"
 		}
 	]
 }
