@@ -5,16 +5,17 @@ html(lang="ja")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     meta(name="robots" content="noindex")
-    title iframe
+    title iframe example
     script.
-      const openInChild = (n) => {
-        if (n == 0 && top.location.href == self.location.href){
-            top.location.href='/';
+      const openInChild = (n = 0) => {
+        if (n === 0 && top.location.href === self.location.href){
+          top.location.href='/';
+          return;
         }
-        n++;
+        document.body.classList.remove("hidden")
+        n++
       }
-      window.addEventListener("DOMContentLoaded", openInChild)
-  body(onLoad="openInChild(0)")
+  body.hidden(onLoad="openInChild(0)")
     block content
     block scripts
       script(src="/assets/js/iframe.ts" type="module")

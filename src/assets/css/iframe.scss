@@ -21,6 +21,9 @@ body {
   font-weight: normal;
   line-height: 1.5;
   letter-spacing: 0.04em;
+  &.hidden {
+    display: none;
+  }
 }
 canvas {
   vertical-align: bottom;
