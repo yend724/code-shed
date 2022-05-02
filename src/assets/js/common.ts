@@ -1,5 +1,6 @@
 import "destyle.css";
 import "/assets/css/style.scss";
+import "@fortawesome/fontawesome-free/css/brands.min.css"
 import Prism from "prismjs";
 import 'prismjs/components/prism-pug.min.js'
 import 'prismjs/components/prism-scss.min.js'

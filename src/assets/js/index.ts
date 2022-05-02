@@ -27,8 +27,17 @@ const init = () => {
       delay: 0.3,
     });
 
+  gsap.to(".sns-icons", {
+    opacity: 1,
+    visibility: "visible",
+    webkitFilter: "blur(0px)",
+    duration: 0.3,
+    ease: "power3.out",
+    delay: 1.5,
+  })
   gsap.to(".main", {
     opacity: 1,
+    visibility: "visible",
     webkitFilter: "blur(0px)",
     duration: 0.3,
     ease: "power3.out",
@@ -36,6 +45,7 @@ const init = () => {
   });
   gsap.to(".bg", {
     opacity: 1,
+    visibility: "visible",
     scale: 1,
     webkitFilter: "blur(0px)",
     duration: 0.3,

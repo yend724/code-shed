@@ -38,6 +38,7 @@ canvas {
   grid-row: 1 / 1;
   grid-column: 1 /1;
   opacity: 0;
+  visibility: hidden;
   transform: scale(1.2);
   filter: blur(1rem);
 }
@@ -53,7 +54,7 @@ canvas {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0.25rem 0.5rem;
+  gap: 1rem 2rem;
   min-height: 4rem;
   padding: 0.5rem 1rem;
   text-shadow: 0 0 0.5em rgba(0, 0, 0, 0.8);
@@ -65,6 +66,21 @@ canvas {
     white-space: nowrap;
   }
 }
+.sns-icons {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1.5rem;
+  &.__top {
+    filter: blur(1rem);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+.sns-icon {
+  font-size: 1.5rem;
+}
 .page-title {
   font-size: 1.5rem;
   font-weight: 600;
@@ -75,6 +91,7 @@ canvas {
   &.__top {
     opacity: 0;
     filter: blur(1rem);
+    visibility: hidden;
   }
 }
 .description {
@@ -85,7 +102,7 @@ canvas {
   margin-top: 1.5rem;
   margin-left: -1rem;
   margin-right: -1rem;
-  background-color: rgb(10,10,10);
+  background-color: rgb(10, 10, 10);
   overflow: hidden;
 }
 .__full {
@@ -108,10 +125,10 @@ canvas {
 .code-title {
   cursor: pointer;
   overflow: hidden;
-  transition: color .2s ease-out;
+  transition: color 0.2s ease-out;
   @media (hover: hover) {
     &:hover {
-      color: #90A4AE;
+      color: #90a4ae;
     }
   }
 }
