@@ -18,10 +18,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&amp;display=swap">
-    <script type="module" crossorigin src="/assets/destyle.c3737223.js"></script>
-    <script type="module" crossorigin src="/assets/common.340ba15b.js"></script>
-    <link rel="stylesheet" href="/assets/destyle.670c73c0.css">
-    <link rel="stylesheet" href="/assets/common.8f0db1d0.css">
+    <script type="module" crossorigin src="/assets/common.fb43e941.js"></script>
+    <link rel="stylesheet" href="/assets/common.cb209d34.css">
+    <link rel="stylesheet" href="/assets/code-donut-selector-index.37b0d14c.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5QEMC1D1CN"></script>
     <script>window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -29,22 +28,21 @@
           gtag("config", "G-5QEMC1D1CN");</script>
   </head>
   <body>
-    <div class="wrapper">
-      <div class="content">
-        <header class="header">
-          <div class="site-title"><a href="/">Code Shed</a></div>
-          <div class="sns-icons"><a class="fa-brands fa-twitter sns-icon" href="https://twitter.com/yend724" target="_blank" rel="noopener noreferrer"></a><a class="fa-brands fa-github sns-icon" href="https://github.com/yend724/code-shed" target="_blank" rel="noopener noreferrer"></a></div>
-        </header>
-        <main class="main">
-          <h1 class="page-title">ドーナツセレクタ</h1>
-          <div class="example-area __full">
-            <iframe class="example-iframe" src="/iframe/code/donut-selector/" title="ドーナツセレクタ" loading="lazy" style="aspect-ratio:16/9;"></iframe>
-          </div>
-          <div class="code-area">
-            <details class="code">
-              <summary class="code-title"><span class="code-title__text" data-text="HTML">HTML</span></summary>
-              <div class="code-content">
-                <pre><code class="language-html">&lt;p&gt;articleの外&lt;/p&gt;
+    <div id="code-info">
+      <div class="wrapper">
+        <div class="head" id="js-trigger-slideup">Slide</div>
+        <div class="content">
+          <header class="header">
+            <div class="site-title"><a href="/">Code Shed</a></div>
+            <div class="sns-icons"><a class="fa-brands fa-twitter sns-icon" href="https://twitter.com/yend724" target="_blank" rel="noopener noreferrer"></a><a class="fa-brands fa-github sns-icon" href="https://github.com/yend724/code-shed" target="_blank" rel="noopener noreferrer"></a></div>
+          </header>
+          <main class="main">
+            <h1 class="page-title">ドーナツセレクタ</h1>
+            <div class="code-area">
+              <details class="code">
+                <summary class="code-title"><span class="code-title__text" data-text="HTML">HTML</span></summary>
+                <div class="code-content">
+                  <pre><code class="language-html">&lt;p&gt;articleの外&lt;/p&gt;
 &lt;article&gt;
   &lt;h2&gt;article &gt; h2&lt;/h2&gt;
   &lt;h2&gt;
@@ -60,23 +58,44 @@
     &lt;p&gt;article &gt; div &gt; p&lt;/p&gt;
   &lt;/div&gt;
 &lt;/article&gt;</code></pre>
-              </div>
-            </details>
-            <details class="code">
-              <summary class="code-title"><span class="code-title__text" data-text="CSS">CSS</span></summary>
-              <div class="code-content">
-                <pre><code class="language-css">article p:not(h2 &gt; *) {
+                </div>
+              </details>
+              <details class="code">
+                <summary class="code-title"><span class="code-title__text" data-text="CSS">CSS</span></summary>
+                <div class="code-content">
+                  <pre><code class="language-css">article p:not(h2 &gt; *) {
   background-color: skyblue;
 }
 article p:not(h2 *) {
   background-color: grey;
 }</code></pre>
-              </div>
-            </details>
-          </div>
-        </main>
+                </div>
+              </details>
+            </div>
+          </main>
+        </div>
       </div>
     </div>
+    <div id="code-example">
+      <p>articleの外
+        <article>
+          <h2>article > h2</h2>
+          <h2>
+            <p>article > h2 > p</p>
+          </h2>
+          <h2>
+            <div>
+              <p>article > h2 > div > p</p>
+            </div>
+          </h2>
+          <p>article > p</p>
+          <div>
+            <p>article > div > p</p>
+          </div>
+        </article>
+      </p>
+    </div>
+    
     
   </body>
 </html>
