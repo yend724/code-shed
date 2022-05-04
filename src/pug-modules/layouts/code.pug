@@ -4,9 +4,12 @@ html(lang="ja")
   head
     include /pug-modules/includes/head.pug
   body
-    #code-info.l-layout(data-open="close")
-      .l-wrapper
-        button#js-button-slide.button-slide Slide
+    #code-info.l-layout
+      button#js-button-slide.button-slide(aria-expanded="false" aria-controls="js-wrapper")
+        span.button-slide__row
+        span.button-slide__row
+        span.button-slide__row
+      #js-wrapper.l-wrapper(aria-hidden="true")
         .l-content
           header.l-header
             div.sns-icons
