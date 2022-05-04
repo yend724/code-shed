@@ -149,7 +149,7 @@ canvas {
   left: 0;
   width: 100%;
   min-height: var(--window-h-full, 100vh);
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.7);
   transform: translate(0, calc(var(--window-h-full, 100vh) - 3rem));
   z-index: 2;
   .wrapper {
@@ -182,18 +182,10 @@ canvas {
     flex-wrap: wrap;
     gap: 1rem 2rem;
   }
-  .site-title {
-    font-size: 1rem;
-    font-weight: 600;
-    > * {
-      white-space: nowrap;
-    }
-  }
   .sns-icons {
     flex-grow: 1;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
     gap: 1.5rem;
   }
   .sns-icon {
@@ -201,11 +193,11 @@ canvas {
   }
   .page-title {
     margin-top: 1rem;
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-weight: 600;
   }
   .code-area {
-    margin-top: 1.5rem;
+    margin-top: 3rem;
   }
   .code + .code {
     margin-top: 1rem;
@@ -219,6 +211,9 @@ canvas {
         color: #90a4ae;
       }
     }
+  }
+  .to-top {
+    margin-top: 3rem;
   }
 }
 #code-example {

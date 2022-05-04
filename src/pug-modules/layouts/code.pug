@@ -9,8 +9,6 @@ html(lang="ja")
         button.head#js-trigger-slideup Slide
         .content
           header.header
-            div.site-title
-              a(href="/") #{siteName}
             div.sns-icons
               a.fa-brands.fa-twitter.sns-icon(href="https://twitter.com/yend724" target="_blank" rel="noopener noreferrer")
               a.fa-brands.fa-github.sns-icon(href="https://github.com/yend724/code-shed" target="_blank" rel="noopener noreferrer")
@@ -20,6 +18,8 @@ html(lang="ja")
               block code-html
               block code-css
               block code-ts
+            .to-top
+              a.to-top__link(href="/") Topへもどる
     #code-example
       block example
     block scripts
