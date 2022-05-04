@@ -1,4 +1,10 @@
 extends /pug-modules/layouts/code
+block example
+  .container
+    p.text
+      - var chars = ["C","S","S"]
+      each char in chars
+        span.char(data-char=char) #{char}
 block code-html
   +code("pug", `.container
   p.text

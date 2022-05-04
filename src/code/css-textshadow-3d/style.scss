@@ -1,0 +1,50 @@
+@use "sass:math";
+#code-example {
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: var(--window-h-full, 100vh);
+  }
+  .text {
+    text-align: center;
+  }
+  .char {
+    $value: ();
+    @for $i from 1 through 15 {
+      $num: $i + px;
+      $theShadow: -$num $num 0 rgb(30, 30, 30);
+      $value: append($value, $theShadow, comma);
+    }
+    position: relative;
+    display: inline-block;
+    color: #000;
+    font-weight: 700;
+    font-size: 6rem;
+    line-height: 1.1;
+    letter-spacing: 0.2em;
+    text-shadow: $value;
+    transform: rotate(-5deg) skew(25deg);
+    transition: all 0.3s ease-out;
+    &::before {
+      content: attr(data-char);
+      position: absolute;
+      top: 15px;
+      left: -15px;
+      color: rgba(255, 255, 255, 0.3);
+      text-shadow: none;
+      filter: blur(8px);
+      z-index: -1;
+      transition: all 0.3s ease-out;
+    }
+    @media (hover: hover) {
+      &:hover {
+        transform: translate(5px, -5px) rotate(-5deg) skew(25deg);
+        &::before {
+          color: rgba(255, 255, 255, 0.1);
+          filter: blur(2px);
+        }
+      }
+    }
+  }
+}

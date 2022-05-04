@@ -1,4 +1,11 @@
 extends /pug-modules/layouts/code
+block example
+  .container
+    svg(viewBox="0 0 800 600")
+      symbol#symbol-text
+        text(text-anchor="middle" x="50%" y="50%" dy=".4em") Code Shed
+      - for(var i = 0; i < 6; i++)
+        use.text(xlink:href="#symbol-text")
 block code-html
   +code("pug", `.container
   svg(viewBox="0 0 800 600")

@@ -10,8 +10,9 @@ const init = () => {
 
   const renderer = new THREE.WebGL1Renderer({
     canvas: canvas,
+    alpha: true,
   });
-  renderer.setClearColor(new THREE.Color(0x000));
+  renderer.setClearColor(0x000000, 0);
   renderer.setSize(canvas.clientWidth, canvas.clientWidth / aspect);
   renderer.setPixelRatio(window.devicePixelRatio);
 

@@ -1,16 +1,29 @@
 extends /pug-modules/layouts/code
+block example
+  .wrapper
+    canvas#canvas
 block code-html
-  +code("pug", `canvas#canvas`)
+  +code("pug", `.wrapper
+  canvas#canvas`)
 block code-css
-  +code("css", `canvas {
-  border: 1px solid #efefef;
+  +code("css", `.wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+canvas {
   width: 100%;
   min-width: 100%;
   max-width: 100%;
   aspect-ratio: 16/9;
 }`)
 block code-ts
-  +code("ts",`import * as THREE from "three";
+  +code("ts",`import "./style.scss";
+import * as THREE from "three";
 
 const aspect = 16 / 9;
 
@@ -21,8 +34,9 @@ const init = () => {
 
   const renderer = new THREE.WebGL1Renderer({
     canvas: canvas,
+    alpha: true,
   });
-  renderer.setClearColor(new THREE.Color(0x000));
+  renderer.setClearColor(0x000000, 0);
   renderer.setSize(canvas.clientWidth, canvas.clientWidth / aspect);
   renderer.setPixelRatio(window.devicePixelRatio);
 
