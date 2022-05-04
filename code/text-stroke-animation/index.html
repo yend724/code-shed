@@ -18,9 +18,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&amp;display=swap">
-    <script type="module" crossorigin src="/assets/common.fb43e941.js"></script>
-    <link rel="stylesheet" href="/assets/common.96d8e919.css">
-    <link rel="stylesheet" href="/assets/code-text-stroke-animation-index.0442c3e8.css">
+    <script type="module" crossorigin src="/assets/setWindowSize.73fff501.js"></script>
+    <script type="module" crossorigin src="/assets/code.318bbaf4.js"></script>
+    <link rel="stylesheet" href="/assets/setWindowSize.f6135944.css">
+    <link rel="stylesheet" href="/assets/code.869fd219.css">
+    <link rel="stylesheet" href="/assets/code-text-stroke-animation-index.c47159dc.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5QEMC1D1CN"></script>
     <script>window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -28,43 +30,31 @@
           gtag("config", "G-5QEMC1D1CN");</script>
   </head>
   <body>
-    <div id="code-info">
-      <div class="wrapper">
-        <button class="head" id="js-trigger-slideup">Slide</button>
-        <div class="content">
-          <header class="header">
-            <div class="sns-icons"><a class="fa-brands fa-twitter sns-icon" href="https://twitter.com/yend724" target="_blank" rel="noopener noreferrer"></a><a class="fa-brands fa-github sns-icon" href="https://github.com/yend724/code-shed" target="_blank" rel="noopener noreferrer"></a></div>
+    <div class="l-layout" id="code-info" data-open="close">
+      <div class="l-wrapper">
+        <button class="button-slide" id="js-button-slide">Slide</button>
+        <div class="l-content">
+          <header class="l-header">
+            <div class="sns-icons"><a class="fa-brands fa-twitter sns-icons__item" href="https://twitter.com/yend724" target="_blank" rel="noopener noreferrer"></a><a class="fa-brands fa-github sns-icons__item" href="https://github.com/yend724/code-shed" target="_blank" rel="noopener noreferrer"></a></div>
           </header>
-          <main class="main">
+          <main class="l-main">
             <h1 class="page-title">SVGでstrokeのテキストアニメーション</h1>
             <div class="code-area">
               <details class="code">
                 <summary class="code-title"><span class="code-title__text" data-text="Pug">Pug</span></summary>
                 <div class="code-content">
-                  <pre><code class="language-pug">.container
-  svg(viewBox=&quot;0 0 800 600&quot;)
-    symbol#symbol-text
-      text(text-anchor=&quot;middle&quot; x=&quot;50%&quot; y=&quot;50%&quot; dy=&quot;.4em&quot;) Code Shed
-    - for(var i = 0; i &lt; 6; i++)
-      use.text(xlink:href=&quot;#symbol-text&quot;)</code></pre>
+                  <pre><code class="language-pug">.svg(viewBox=&quot;0 0 800 600&quot;)
+  symbol#symbol-text
+    text(text-anchor=&quot;middle&quot; x=&quot;50%&quot; y=&quot;50%&quot; dy=&quot;.4em&quot;) Code Shed
+  - for(var i = 0; i &lt; 6; i++)
+    use.text(xlink:href=&quot;#symbol-text&quot;)</code></pre>
                 </div>
               </details>
               <details class="code">
                 <summary class="code-title"><span class="code-title__text" data-text="SCSS">SCSS</span></summary>
                 <div class="code-content">
-                  <pre><code class="language-scss">.container {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  aspect-ratio: 4/3;
-}
-svg {
+                  <pre><code class="language-scss">svg {
   font-size: 8rem;
-  position: absolute;
-  width: 100%;
-  height: 100%;
 }
 .text {
   fill: none;
@@ -74,24 +64,24 @@ svg {
   stroke-dashoffset: 0;
   animation: anime 6s infinite linear;
 }
-.text:nth-child(5n + 1){
-  stroke: #F44336;
+.text:nth-child(5n + 1) {
+  stroke: #f44336;
   animation-delay: -1.2s;
 }
-.text:nth-child(5n + 2){
-  stroke: #2196F3;
+.text:nth-child(5n + 2) {
+  stroke: #2196f3;
   animation-delay: -2.4s;
 }
-.text:nth-child(5n + 3){
-  stroke: #4CAF50;
+.text:nth-child(5n + 3) {
+  stroke: #4caf50;
   animation-delay: -3.6s;
 }
-.text:nth-child(5n + 4){
-  stroke: #FF5722;
+.text:nth-child(5n + 4) {
+  stroke: #ff5722;
   animation-delay: -4.8s;
 }
-.text:nth-child(5n + 5){
-  stroke: #FFEB3B;
+.text:nth-child(5n + 5) {
+  stroke: #ffeb3b;
   animation-delay: -6s;
 }
 @keyframes anime {
@@ -107,20 +97,18 @@ svg {
         </div>
       </div>
     </div>
-    <div id="code-example">
-      <div class="container">
-        <svg viewBox="0 0 800 600">
-          <symbol id="symbol-text">
-            <text text-anchor="middle" x="50%" y="50%" dy=".4em">Code Shed</text>
-          </symbol>
-          <use class="text" xlink:href="#symbol-text"></use>
-          <use class="text" xlink:href="#symbol-text"></use>
-          <use class="text" xlink:href="#symbol-text"></use>
-          <use class="text" xlink:href="#symbol-text"></use>
-          <use class="text" xlink:href="#symbol-text"></use>
-          <use class="text" xlink:href="#symbol-text"></use>
-        </svg>
-      </div>
+    <div class="l-layout" id="code-example">
+      <svg viewBox="0 0 800 600">
+        <symbol id="symbol-text">
+          <text text-anchor="middle" x="50%" y="50%" dy=".4em">Code Shed</text>
+        </symbol>
+        <use class="text" xlink:href="#symbol-text"></use>
+        <use class="text" xlink:href="#symbol-text"></use>
+        <use class="text" xlink:href="#symbol-text"></use>
+        <use class="text" xlink:href="#symbol-text"></use>
+        <use class="text" xlink:href="#symbol-text"></use>
+        <use class="text" xlink:href="#symbol-text"></use>
+      </svg>
     </div>
     
     
