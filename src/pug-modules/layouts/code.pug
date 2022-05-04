@@ -4,15 +4,15 @@ html(lang="ja")
   head
     include /pug-modules/includes/head.pug
   body
-    #code-info
-      .wrapper
-        button.head#js-trigger-slideup Slide
-        .content
-          header.header
+    #code-info.l-layout(data-open="close")
+      .l-wrapper
+        button#js-button-slide.button-slide Slide
+        .l-content
+          header.l-header
             div.sns-icons
-              a.fa-brands.fa-twitter.sns-icon(href="https://twitter.com/yend724" target="_blank" rel="noopener noreferrer")
-              a.fa-brands.fa-github.sns-icon(href="https://github.com/yend724/code-shed" target="_blank" rel="noopener noreferrer")
-          main.main
+              a.fa-brands.fa-twitter.sns-icons__item(href="https://twitter.com/yend724" target="_blank" rel="noopener noreferrer")
+              a.fa-brands.fa-github.sns-icons__item(href="https://github.com/yend724/code-shed" target="_blank" rel="noopener noreferrer")
+          main.l-main
             h1.page-title #{current.pageTitle}
             .code-area
               block code-html
@@ -20,8 +20,8 @@ html(lang="ja")
               block code-ts
             .to-top
               a.to-top__link(href="/") Topへもどる
-    #code-example
+    #code-example.l-layout
       block example
     block scripts
-      script(src="/assets/js/common.ts" type="module")
+      script(src="/assets/js/code.ts" type="module")
       script(src="./script.ts" type="module")

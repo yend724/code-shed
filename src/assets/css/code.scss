@@ -1,0 +1,118 @@
+//
+// Foundation
+//
+@use "./foundation/base";
+//code-info
+#code-info {
+	//
+	// Layout
+	//
+	&.l-layout {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		min-height: var(--window-h-full, 100vh);
+		background-color: rgba(0, 0, 0, 0.7);
+		transform: translate(0, calc(var(--window-h-full, 100vh) - 3rem));
+    transition: transform .2s ease-out;
+		z-index: 2;
+    &[data-open="open"] {
+      transform: translate(0, 0);
+    }
+	}
+  .l-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .l-content {
+    position: relative;
+    height: calc(100% - 3rem);
+    padding: 2rem 1rem;
+    overflow: scroll;
+    z-index: 0;
+  }
+  .l-main {
+    position: relative;
+  }
+  .l-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+  }
+	//
+	// Object
+	//
+  .button-slide {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 3rem;
+    border: 2px solid #000;
+    background-color: #000;
+    transition: all .2s ease-out;
+    outline: 1px solid #fff;
+    z-index: 1;
+    @media (hover: hover) {
+      &:hover {
+        cursor: pointer;
+        background-color: #fff;
+        color: #000;
+      }
+    }
+  }
+  .sns-icons {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    &__item {
+      font-size: 1.5rem;
+    }
+  }
+  .page-title {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  .code-area {
+    margin-top: 3rem;
+  }
+  .code + .code {
+    margin-top: 1rem;
+  }
+  .code-title {
+    cursor: pointer;
+    overflow: hidden;
+    transition: color 0.2s ease-out;
+    @media (hover: hover) {
+      &:hover {
+        color: #90a4ae;
+      }
+    }
+  }
+  .to-top {
+    margin-top: 3rem;
+    &__link {
+      text-decoration: underline;
+    }
+  }
+}
+// code-example
+#code-example {
+	//
+	// Layout
+	//
+	&.l-layout {
+		position: relative;
+		width: 100%;
+		min-height: var(--window-h-full, 100vh);
+		z-index: 1;
+	}
+}

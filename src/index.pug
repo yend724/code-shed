@@ -2,23 +2,22 @@ doctype html
 html(lang="ja")
   head
     include /pug-modules/includes/head.pug
-  body#top
-    .wrapper
-      .bg
+  body
+    .l-wrapper
+      .l-bg
         canvas#bgCanvas
-      .content
-        header.header
-          h1.site-title.js-slide-anime
+      .l-content
+        header.l-header
+          h1.site-title
             span.text #{siteName}
-          div.sns-icons.__top
-            a.fa-brands.fa-twitter.sns-icon(href="https://twitter.com/yend724" target="_blank" rel="noopener noreferrer")
-            a.fa-brands.fa-github.sns-icon(href="https://github.com/yend724/code-shed" target="_blank" rel="noopener noreferrer")
-        main.main.__top
-          p.description #{meta.description}
+          div.sns-icons
+            a.fa-brands.fa-twitter.sns-icons__icon(href="https://twitter.com/yend724" target="_blank" rel="noopener noreferrer")
+            a.fa-brands.fa-github.sns-icons__icon(href="https://github.com/yend724/code-shed" target="_blank" rel="noopener noreferrer")
+        main.l-main
+          p.site-description #{meta.description}
           ul.link-list
             each page in pages
               if page.category === "code"
-                li.link-item
-                  a.link(href=page.path) #{page.pageTitle}
-    script(src="/assets/js/common.ts" type="module")
+                li.link-list__item
+                  a.link-list__link(href=page.path) #{page.pageTitle}
     script(src="/assets/js/index.ts" type="module")
