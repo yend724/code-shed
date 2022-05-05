@@ -6,22 +6,22 @@ const itemsHTMLCollection = document.querySelectorAll(
 ) as NodeListOf<HTMLDivElement>;
 const items = Array.from(itemsHTMLCollection);
 
-// mouse
-const mouse = {
+// pointer
+const pointer = {
   x: window.innerWidth / 2,
   y: window.innerHeight / 2,
 };
 
 // input
 const input = {
-  mouseX: {
+  pointerX: {
     start: 0,
     end: window.innerWidth,
     current: 0,
     range: window.innerWidth - 0,
     progress: 0,
   },
-  mouseY: {
+  pointerY: {
     start: 0,
     end: window.innerHeight,
     current: 0,
@@ -52,17 +52,17 @@ const output = {
 };
 
 const updateInputs = () => {
-  // input mouseX and mouseY
-  input.mouseX.current = mouse.x;
-  input.mouseX.progress = input.mouseX.current / input.mouseX.range;
-  input.mouseY.current = mouse.y;
-  input.mouseY.progress = input.mouseY.current / input.mouseY.range;
+  // input pointerX and pointerY
+  input.pointerX.current = pointer.x;
+  input.pointerX.progress = input.pointerX.current / input.pointerX.range;
+  input.pointerY.current = pointer.y;
+  input.pointerY.progress = input.pointerY.current / input.pointerY.range;
 };
 
 const updateOutpus = () => {
   // output x and y
-  output.x.current = output.x.start + input.mouseX.progress * output.x.range;
-  output.y.current = output.y.start + input.mouseY.progress * output.y.range;
+  output.x.current = output.x.start + input.pointerX.progress * output.x.range;
+  output.y.current = output.y.start + input.pointerY.progress * output.y.range;
 };
 
 const updateElements = () => {
@@ -86,16 +86,16 @@ const init = () => {
 };
 
 const handleResize = () => {
-  input.mouseX.end = window.innerWidth;
-  input.mouseY.end = window.innerHeight;
+  input.pointerX.end = window.innerWidth;
+  input.pointerY.end = window.innerHeight;
 
-  input.mouseX.range = input.mouseX.end - input.mouseX.start;
-  input.mouseY.range = input.mouseY.end - input.mouseY.start;
+  input.pointerX.range = input.pointerX.end - input.pointerX.start;
+  input.pointerY.range = input.pointerY.end - input.pointerY.start;
 };
 
 const handlePointerMove = (e: PointerEvent) => {
-  mouse.x = e.clientX;
-  mouse.y = e.clientY;
+  pointer.x = e.clientX;
+  pointer.y = e.clientY;
 
   updateInputs();
   updateOutpus();

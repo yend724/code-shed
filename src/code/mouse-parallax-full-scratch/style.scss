@@ -5,8 +5,9 @@
   .container {
     position: relative;
     width: 100%;
-    min-height: var(--window-h-full, 100vh);
+    height: var(--window-h-full, 100vh);
     padding: 2rem;
+    overflow: hidden;
   }
   .item {
     position: absolute;
