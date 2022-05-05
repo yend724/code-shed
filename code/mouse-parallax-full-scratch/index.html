@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <title>マウスによるパララックス（フルスクラッチ） | Code Shed</title>
+    <meta name="description" content="フロントエンドエンジニアのコード置き場">
+    <meta property="og:site_name" content="Code Shed">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="マウスによるパララックス（フルスクラッチ） | Code Shed">
+    <meta property="og:description" content="フロントエンドエンジニアのコード置き場">
+    <meta property="og:image" content="https://code-shed.dev/img/og.png">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:site" content="@yend724">
+    <meta property="twitter:creator" content="@yend724">
+    <link rel="canonical" href="https://code-shed.dev/code/mouse-parallax-full-scratch/">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&amp;display=swap">
+    <script type="module" crossorigin src="/assets/code-mouse-parallax-full-scratch-index.d54d9272.js"></script>
+    <link rel="modulepreload" href="/assets/setWindowSize.73fff501.js">
+    <link rel="modulepreload" href="/assets/code.00129da2.js">
+    <link rel="stylesheet" href="/assets/setWindowSize.f6135944.css">
+    <link rel="stylesheet" href="/assets/code.6e000b7e.css">
+    <link rel="stylesheet" href="/assets/code-mouse-parallax-full-scratch-index.f8912b7f.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5QEMC1D1CN"></script>
+    <script>window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag("js", new Date());
+          gtag("config", "G-5QEMC1D1CN");</script>
+  </head>
+  <body>
+    <div class="l-layout" id="code-info">
+      <button class="button-slide" id="js-button-slide" aria-expanded="false" aria-controls="js-wrapper"><span class="button-slide__row"></span><span class="button-slide__row"></span><span class="button-slide__row"></span></button>
+      <div class="l-wrapper" id="js-wrapper" aria-hidden="true">
+        <div class="l-content">
+          <header class="l-header">
+            <div class="sns-icons"><a class="fa-brands fa-twitter sns-icons__item" href="https://twitter.com/yend724" target="_blank" rel="noopener noreferrer"></a><a class="fa-brands fa-github sns-icons__item" href="https://github.com/yend724/code-shed" target="_blank" rel="noopener noreferrer"></a></div>
+          </header>
+          <main class="l-main">
+            <h1 class="page-title">マウスによるパララックス（フルスクラッチ）</h1>
+            <div class="code-area">
+              <details class="code">
+                <summary class="code-title"><span class="code-title__text" data-text="Pug">Pug</span></summary>
+                <div class="code-content">
+                  <pre><code class="language-pug">.wrapper
+  .container.js-container
+    .item(data-depth=&quot;0&quot;)
+    .item(data-depth=&quot;0.25&quot;)
+    .item(data-depth=&quot;0.5&quot;)
+    .item(data-depth=&quot;0.75&quot;)
+    .item(data-depth=&quot;1&quot;)</code></pre>
+                </div>
+              </details>
+              <details class="code">
+                <summary class="code-title"><span class="code-title__text" data-text="SCSS">SCSS</span></summary>
+                <div class="code-content">
+                  <pre><code class="language-scss">.wrapper {
+  position: relative;
+}
+.container {
+  position: relative;
+  width: 100%;
+  min-height: var(--window-h-full, 100vh);
+  padding: 2rem;
+}
+.item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  &amp;:nth-of-type(1){
+    background-color: aqua;
+  }
+  &amp;:nth-of-type(2){
+    background-color: hotpink;
+  }
+  &amp;:nth-of-type(3){
+    background-color: greenyellow;
+  }
+  &amp;:nth-of-type(4){
+    background-color:lemonchiffon;
+  }
+  &amp;:nth-of-type(5){
+    background-color:salmon;
+  }
+}</code></pre>
+                </div>
+              </details>
+              <details class="code">
+                <summary class="code-title"><span class="code-title__text" data-text="TypeScript">TypeScript</span></summary>
+                <div class="code-content">
+                  <pre><code class="language-ts">.import &quot;./style.scss&quot;;
+
+// html
+const itemsHTMLCollection = document.querySelectorAll(
+  &quot;.js-container &gt; .item&quot;
+) as NodeListOf&lt;HTMLDivElement&gt;;
+const items = Array.from(itemsHTMLCollection);
+
+// mouse
+const mouse = {
+  x: window.innerWidth / 2,
+  y: window.innerHeight / 2,
+};
+
+// input
+const input = {
+  mouseX: {
+    start: 0,
+    end: window.innerWidth,
+    current: 0,
+    range: window.innerWidth - 0,
+    progress: 0,
+  },
+  mouseY: {
+    start: 0,
+    end: window.innerHeight,
+    current: 0,
+    range: window.innerHeight - 0,
+    progress: 0,
+  },
+};
+
+// output
+const output = {
+  x: {
+    start: -200,
+    end: 200,
+    current: 0,
+    range: 200 - -200,
+  },
+  y: {
+    start: -200,
+    end: 200,
+    current: 0,
+    range: 200 - -200,
+  },
+  scale: {
+    start: 1,
+    end: 0.5,
+    range: 0.5 - 1,
+  },
+};
+
+const updateInputs = () =&gt; {
+  // input mouseX and mouseY
+  input.mouseX.current = mouse.x;
+  input.mouseX.progress = input.mouseX.current / input.mouseX.range;
+  input.mouseY.current = mouse.y;
+  input.mouseY.progress = input.mouseY.current / input.mouseY.range;
+};
+
+const updateOutpus = () =&gt; {
+  // output x and y
+  output.x.current = output.x.start + input.mouseX.progress * output.x.range;
+  output.y.current = output.y.start + input.mouseY.progress * output.y.range;
+};
+
+const updateElements = () =&gt; {
+  items.forEach(element =&gt; {
+    const depth = Number(element.dataset.depth!);
+    const elementOutput = {
+      x: output.x.current * (1 - depth),
+      y: output.y.current * (1 - depth),
+      zIndex: 1000 * depth,
+      scale: output.scale.start + output.scale.range * depth,
+    };
+    element.style.zIndex = elementOutput.zIndex.toString();
+    element.style.transform = `translate(${elementOutput.x}px, ${elementOutput.y}px) scale(${elementOutput.scale})`;
+  });
+};
+
+const init = () =&gt; {
+  updateInputs();
+  updateOutpus();
+  updateElements();
+};
+
+const handleResize = () =&gt; {
+  input.mouseX.end = window.innerWidth;
+  input.mouseY.end = window.innerHeight;
+
+  input.mouseX.range = input.mouseX.end - input.mouseX.start;
+  input.mouseY.range = input.mouseY.end - input.mouseY.start;
+};
+
+const handlePointerMove = (e: PointerEvent) =&gt; {
+  mouse.x = e.clientX;
+  mouse.y = e.clientY;
+
+  updateInputs();
+  updateOutpus();
+  updateElements();
+};
+
+window.addEventListener(&quot;load&quot;, init);
+window.addEventListener(&quot;resize&quot;, handleResize);
+window.addEventListener(&quot;pointermove&quot;, handlePointerMove);</code></pre>
+                </div>
+              </details>
+            </div>
+            <div class="to-top"><a class="to-top__link" href="/">Topへもどる</a></div>
+          </main>
+        </div>
+      </div>
+    </div>
+    <div class="l-layout" id="code-example">
+      <div class="wrapper">
+        <div class="container js-container">
+          <div class="item" data-depth="0"></div>
+          <div class="item" data-depth="0.25"></div>
+          <div class="item" data-depth="0.5"></div>
+          <div class="item" data-depth="0.75"></div>
+          <div class="item" data-depth="1"></div>
+        </div>
+      </div>
+    </div>
+    
+    
+  </body>
+</html>
