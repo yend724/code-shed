@@ -19,7 +19,9 @@ const init = () => {
   slideBtn.addEventListener("click", () => {
     const state = slideBtn.getAttribute("aria-expanded") as "true" | "false";
     const next = state === "true" ? "false" : "true";
+    const label = next === "true" ? "メニューを閉じる" : "メニューを開く";
     slideBtn.setAttribute("aria-expanded", next)
+    slideBtn.setAttribute("aria-label", label)
     wrapper.setAttribute("aria-hidden", state)
   })
 };
