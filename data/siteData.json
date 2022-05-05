@@ -6,6 +6,12 @@
 	},
 	"pages": [
 		{
+			"pageTitle": "マウスによるパララックス（フルスクラッチ）",
+			"path": "/code/mouse-parallax-full-scratch/",
+			"date": "2022-05-05",
+			"category": "code"
+		},
+		{
 			"pageTitle": "SVGでstrokeのテキストアニメーション",
 			"path": "/code/text-stroke-animation/",
 			"category": "code"
