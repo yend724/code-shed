@@ -24,7 +24,7 @@ block code-css
   width: 100%;
   height: var(--window-h-full, 100vh);
   padding: 2rem;
-  touch-action: none;
+  touch-action: none; // ブラウザが動かないように
   overflow: hidden;
 }
 .item {
@@ -37,6 +37,7 @@ block code-css
   width: 200px;
   height: 200px;
   border-radius: 10px;
+  will-change: transform; // ちらつき防止
   &:nth-of-type(1){
     background-color: aqua;
   }

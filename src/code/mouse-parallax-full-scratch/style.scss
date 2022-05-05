@@ -20,6 +20,7 @@
     width: 200px;
     height: 200px;
     border-radius: 10px;
+    will-change: transform;
     &:nth-of-type(1){
       background-color: aqua;
     }
