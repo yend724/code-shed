@@ -50,6 +50,7 @@ block code-css
   &__body {
     position: relative;
     margin-top: 1rem;
+    color: transparent;
     transform-style: preserve-3d;
     transition: inherit;
     &::after {
@@ -57,7 +58,7 @@ block code-css
       position: absolute;
       top: 0;
       left: 0;
-      opacity: 0;
+      color: #000;
       transition: inherit;
     }
   }
@@ -73,7 +74,7 @@ block code-css
     display: inline-block;
     position: relative;
     margin-top: 2rem;
-    color: #4fc3f7;
+    color: transparent;
     transform-style: preserve-3d;
     transition: inherit;
     &::after {
@@ -81,7 +82,7 @@ block code-css
       position: absolute;
       top: 0;
       left: 0;
-      opacity: 0;
+      color: #4fc3f7;
       transition: inherit;
     }
   }
@@ -89,24 +90,19 @@ block code-css
     .card {
       &__title,
       &__body, &__link {
-        transform: translateZ(20px);
+        opacity: 1;
+        text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
         &::after {
-          opacity: 1;
-          color: transparent;
-          text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-          transform: translateZ(-20px);
+          transform: translateZ(20px);
         }
       }
       &__thumb {
         transform: translateZ(20px) rotate(5deg);
       }
       &__link {
-        transform: translateZ(20px);
+        text-shadow: 0 0 5px rgb(79, 195, 247, 0.5);
         &::after {
-          opacity: 1;
-          color: transparent;
-          text-shadow: 0 0 5px rgb(79, 195, 247, 0.5);
-          transform: translateZ(-20px);
+          transform: translateZ(20px);
         }
       }
     }
