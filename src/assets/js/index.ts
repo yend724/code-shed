@@ -10,4 +10,10 @@ const init = () => {
   bgInit();
 };
 
+const load = () => {
+  const body = document.body;
+  body.dataset.loaded = "true";
+}
+
 window.addEventListener("DOMContentLoaded", init);
+window.addEventListener("load", load)

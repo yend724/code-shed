@@ -2,14 +2,14 @@ doctype html
 html(lang="ja")
   head
     include /pug-modules/includes/head.pug
-  body
+  body(data-loaded="false")
     .l-wrapper
       .l-bg
         canvas#bgCanvas
       .l-content
         header.l-header
-          h1.site-title
-            span.text #{siteName}
+          h1#js-site-title.site-title
+            span.site-title__text #{siteName}
           div.sns-icons
             a.fa-brands.fa-twitter.sns-icons__icon(href="https://twitter.com/yend724" target="_blank" rel="noopener noreferrer")
             a.fa-brands.fa-github.sns-icons__icon(href="https://github.com/yend724/code-shed" target="_blank" rel="noopener noreferrer")
