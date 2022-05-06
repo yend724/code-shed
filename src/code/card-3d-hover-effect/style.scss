@@ -70,8 +70,7 @@
     &:hover {
       .card {
         &__title,
-        &__body, &__link {
-          opacity: 1;
+        &__body {
           text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
           &::after {
             transform: translateZ(20px);
