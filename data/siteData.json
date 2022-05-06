@@ -6,6 +6,12 @@
 	},
 	"pages": [
 		{
+			"pageTitle": "3Dホバーエフェクト（カードUI）",
+			"path": "/code/card-3d-hover-effect/",
+			"date": "2022-05-05",
+			"category": "code"
+		},
+		{
 			"pageTitle": "マウスによるパララックス（フルスクラッチ）",
 			"path": "/code/mouse-parallax-full-scratch/",
 			"date": "2022-05-05",
