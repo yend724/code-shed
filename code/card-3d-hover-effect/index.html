@@ -28,7 +28,7 @@
     <link rel="modulepreload" href="/assets/code.0b589e47.js">
     <link rel="stylesheet" href="/assets/setWindowSize.f6135944.css">
     <link rel="stylesheet" href="/assets/code.b4b97051.css">
-    <link rel="stylesheet" href="/assets/code-card-3d-hover-effect-index.fad893a7.css">
+    <link rel="stylesheet" href="/assets/code-card-3d-hover-effect-index.a830cd92.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5QEMC1D1CN"></script>
     <script>window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -95,6 +95,7 @@
   &amp;__body {
     position: relative;
     margin-top: 1rem;
+    color: transparent;
     transform-style: preserve-3d;
     transition: inherit;
     &amp;::after {
@@ -102,7 +103,7 @@
       position: absolute;
       top: 0;
       left: 0;
-      opacity: 0;
+      color: #000;
       transition: inherit;
     }
   }
@@ -118,7 +119,7 @@
     display: inline-block;
     position: relative;
     margin-top: 2rem;
-    color: #4fc3f7;
+    color: transparent;
     transform-style: preserve-3d;
     transition: inherit;
     &amp;::after {
@@ -126,7 +127,7 @@
       position: absolute;
       top: 0;
       left: 0;
-      opacity: 0;
+      color: #4fc3f7;
       transition: inherit;
     }
   }
@@ -134,24 +135,19 @@
     .card {
       &amp;__title,
       &amp;__body, &amp;__link {
-        transform: translateZ(20px);
+        opacity: 1;
+        text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
         &amp;::after {
-          opacity: 1;
-          color: transparent;
-          text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-          transform: translateZ(-20px);
+          transform: translateZ(20px);
         }
       }
       &amp;__thumb {
         transform: translateZ(20px) rotate(5deg);
       }
       &amp;__link {
-        transform: translateZ(20px);
+        text-shadow: 0 0 5px rgb(79, 195, 247, 0.5);
         &amp;::after {
-          opacity: 1;
-          color: transparent;
-          text-shadow: 0 0 5px rgb(79, 195, 247, 0.5);
-          transform: translateZ(-20px);
+          transform: translateZ(20px);
         }
       }
     }
