@@ -87,6 +87,14 @@
   gap: 2rem;
   &__icon {
     font-size: 1.5rem;
+    white-space: nowrap;
+  }
+  &__text {
+    display: inline-block;
+    width: 0;
+    text-indent: 100%;
+    overflow: hidden;
+    white-space: nowrap;
   }
 }
 

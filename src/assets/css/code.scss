@@ -129,6 +129,13 @@
     &__item {
       font-size: 1.5rem;
     }
+    &__text {
+      display: inline-block;
+      width: 0;
+      text-indent: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+    }
   }
   .page-title {
     margin-top: 1rem;
