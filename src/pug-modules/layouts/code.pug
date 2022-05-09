@@ -5,10 +5,10 @@ html(lang="ja")
     include /pug-modules/includes/head.pug
   body
     #code-info.l-layout
-      button#js-button-slide.button-slide(aria-expanded="false" aria-controls="js-wrapper" aria-label="メニューを開く")
+      button.button-menu-trigger(aria-expanded="false" aria-controls="menu" aria-label="メニューを開く" data-menu-trigger="menu")
         - for(let i = 0; i < 9; i++)
-          span.button-slide__dot
-      #js-wrapper.l-wrapper(aria-hidden="true")
+          span.button-menu-trigger__dot
+      #menu.l-wrapper(aria-hidden="true")
         .l-content
           header.l-header
             div.sns-icons

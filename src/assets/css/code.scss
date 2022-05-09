@@ -52,7 +52,7 @@
 	//
 	// Object
 	//
-  .button-slide {
+  .button-menu-trigger {
     position: fixed;
     right: 2rem;
     bottom: 2rem;
@@ -63,7 +63,7 @@
     pointer-events: auto;
     @media (hover: hover) {
       &:hover {
-        .button-slide {
+        .button-menu-trigger {
           &__dot {
             &:nth-of-type(3n-1){
               transform: scaleX(6);
@@ -106,7 +106,7 @@
     }
     &[aria-expanded="true"] {
       transform: rotate(360deg);
-      .button-slide {
+      .button-menu-trigger {
         &__dot {
           opacity: 0;
           &:nth-of-type(2) {
