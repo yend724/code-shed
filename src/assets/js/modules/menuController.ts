@@ -1,4 +1,4 @@
-export const Menu = (() => {
+export const menuController = () => {
   const FOCUSABLE_ELEMENTS = [
     "a[href]",
     "area[href]",
@@ -160,4 +160,4 @@ export const Menu = (() => {
   }
 
   return { init, open, close, destroy };
-})();
+};

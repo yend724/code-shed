@@ -7,14 +7,14 @@ import "prismjs/components/prism-scss.min.js";
 import "prismjs/components/prism-typescript.min.js";
 import "prismjs/themes/prism-funky.min.css";
 import setWindowSize from "./modules/setWindowSize";
-import { Menu } from "./modules/menuController";
+import { menuController } from "./modules/menuController";
 
 const init = () => {
   setWindowSize();
   Prism.manual = true;
   Prism.highlightAll();
 
-  const menu = Menu;
+  const menu = menuController();
   menu.init({
     id:"menu",
     trigger: `*[data-menu-trigger="menu"]`
