@@ -1,6 +1,7 @@
 import { resolve } from "path";
 import { defineConfig } from "vite";
 import { render } from "pug";
+import glsl from 'vite-plugin-glsl';
 import vitePluginPug from "./plugins/vite-plugin-pug";
 import vitePluginGa from "./plugins/vite-plugin-ga";
 import { escapeHtml } from "./vite-config-modules/escapeHtml";
@@ -19,6 +20,7 @@ export default defineConfig({
     },
   },
   plugins: [
+    glsl(),
     vitePluginPug(
       {
         basedir: resolve(__dirname, root),

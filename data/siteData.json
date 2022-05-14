@@ -6,6 +6,12 @@
 	},
 	"pages": [
 		{
+			"pageTitle": "Three.jsとShaderを使って画像をゆらゆらさせる",
+			"path": "/code/threejs-shader-texture-wave/",
+			"date": "2022-05-14",
+			"category": "code"
+		},
+		{
 			"pageTitle": "3Dホバーエフェクト（カードUI）",
 			"path": "/code/card-3d-hover-effect/",
 			"date": "2022-05-05",
