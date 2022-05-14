@@ -5,17 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#000000">
-    <title>Three.jsのRaycasterで交差をしらべる | Code Shed</title>
+    <title>Three.jsとShaderを使って画像をゆらゆらさせる | Code Shed</title>
     <meta name="description" content="フロントエンドエンジニアのコード置き場">
     <meta property="og:site_name" content="Code Shed">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Three.jsのRaycasterで交差をしらべる | Code Shed">
+    <meta property="og:title" content="Three.jsとShaderを使って画像をゆらゆらさせる | Code Shed">
     <meta property="og:description" content="フロントエンドエンジニアのコード置き場">
     <meta property="og:image" content="https://code-shed.dev/img/og.png">
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:site" content="@yend724">
     <meta property="twitter:creator" content="@yend724">
-    <link rel="canonical" href="https://code-shed.dev/code/threejs-raycaster/">
+    <link rel="canonical" href="https://code-shed.dev/code/threejs-shader-texture-wave/">
     <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
     <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
@@ -23,7 +23,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&amp;display=swap">
-    <script type="module" crossorigin src="/assets/code-threejs-raycaster-index.8fd3bd67.js"></script>
+    <script type="module" crossorigin src="/assets/code-threejs-shader-texture-wave-index.4f02b1e9.js"></script>
     <link rel="modulepreload" href="/assets/setWindowSize.73fff501.js">
     <link rel="modulepreload" href="/assets/code.39a88454.js">
     <link rel="modulepreload" href="/assets/three.module.1d482df2.js">
@@ -46,7 +46,7 @@
             <div class="sns-icons"><a class="fa-brands fa-twitter sns-icons__item" href="https://twitter.com/yend724" target="_blank" rel="noopener noreferrer"><span class="sns-icons__text">Twitterへのリンク</span></a><a class="fa-brands fa-github sns-icons__item" href="https://github.com/yend724/code-shed" target="_blank" rel="noopener noreferrer"><span class="sns-icons__text">GitHubへのリンク</span></a></div>
           </header>
           <main class="l-main">
-            <h1 class="page-title">Three.jsのRaycasterで交差をしらべる</h1>
+            <h1 class="page-title">Three.jsとShaderを使って画像をゆらゆらさせる</h1>
             <div class="code-area">
               <details class="code">
                 <summary class="code-title"><span class="code-title__text" data-text="Pug">Pug</span></summary>
@@ -56,9 +56,9 @@
                 </div>
               </details>
               <details class="code">
-                <summary class="code-title"><span class="code-title__text" data-text="CSS">CSS</span></summary>
+                <summary class="code-title"><span class="code-title__text" data-text="SCSS">SCSS</span></summary>
                 <div class="code-content">
-                  <pre><code class="language-css">.wrapper {
+                  <pre><code class="language-scss">.wrapper {
   position: absolute;
   top: 0;
   left: 0;
@@ -80,83 +80,126 @@ canvas {
                 <div class="code-content">
                   <pre><code class="language-ts">import &quot;./style.scss&quot;;
 import * as THREE from &quot;three&quot;;
+import * as dat from &quot;lil-gui&quot;;
+//import vertexShader from &quot;./shaders/vertexSahder.glsl&quot;;
+//import fragmentShader from &quot;./shaders/fragmentShader.glsl&quot;;
+import texture from &quot;./photo.png&quot;;
+
+const vertexShader = `
+  uniform vec2 uWave;
+  uniform float uTime;
+
+  varying vec2 vUv;
+  varying float vElavation;
+
+  void main () {
+    vec4 modelPosition = modelMatrix * vec4(position, 1.0);
+
+    float elevation = sin(modelPosition.x * uWave.x + uTime) * 0.1;
+    elevation += sin(modelPosition.y * uWave.y + uTime) * 0.1;
+
+    modelPosition.z = elevation;
+
+    vec4 viewPosition = viewMatrix * modelPosition;
+    vec4 projectionPosition = projectionMatrix * viewPosition;
+    gl_Position = projectionPosition;
+
+    vUv = uv;
+    vElavation = elevation;
+  }
+`;
+const fragmentShader = `
+  uniform vec3 uColor;
+  uniform sampler2D uTexture;
+
+  varying vec2 vUv;
+  varying float vElavation;
+
+  void main () {
+    vec4 textureColor = texture2D(uTexture, vUv);
+    textureColor.rgb *= (vElavation + 0.2) * 2.5 + 0.25;
+    gl_FragColor = textureColor;
+  }
+`;
 
 const aspect = 16 / 9;
 
-const init = () =&gt; {
-  const canvas = document.querySelector(&quot;#canvas&quot;) as HTMLCanvasElement;
+const canvas = document.querySelector(&quot;#canvas&quot;) as HTMLCanvasElement;
 
-  const scene = new THREE.Scene();
+const scene = new THREE.Scene();
 
-  const renderer = new THREE.WebGL1Renderer({
-    canvas: canvas,
-    alpha: true,
-  });
-  renderer.setClearColor(0x000000, 0);
-  renderer.setSize(canvas.clientWidth, canvas.clientWidth / aspect);
-  renderer.setPixelRatio(window.devicePixelRatio);
+const renderer = new THREE.WebGLRenderer({
+  canvas: canvas,
+  alpha: true,
+});
+renderer.setClearColor(0x000000, 0);
+renderer.setSize(canvas.clientWidth, canvas.clientWidth / aspect);
+renderer.setPixelRatio(window.devicePixelRatio);
 
-  const boxGeometory = new THREE.BoxGeometry(6, 6, 6);
-  const boxMaterial = new THREE.MeshNormalMaterial();
+const textureLoader = new THREE.TextureLoader();
+const photTexture = textureLoader.load(texture);
 
-  const boxes = Array.from({ length: 3 }).map((_, i) =&gt; {
-    const box = new THREE.Mesh(boxGeometory, boxMaterial);
-    box.position.x = (i - 1) * 11;
-    return box;
-  });
+const geometry = new THREE.PlaneGeometry(1, 1, 32, 32);
 
-  scene.add(...boxes);
+const material = new THREE.ShaderMaterial({
+  side: THREE.DoubleSide,
+  transparent: true,
+  vertexShader: vertexShader,
+  fragmentShader: fragmentShader,
+  uniforms: {
+    uWave: { value: new THREE.Vector2(5, 5) },
+    uTime: { value: 0 },
+    uColor: { value: new THREE.Color(&quot;pink&quot;) },
+    uTexture: { value: photTexture },
+  },
+});
 
-  const camera = new THREE.PerspectiveCamera(
-    45,
-    canvas.clientWidth / canvas.clientHeight,
-    0.1,
-    100
-  );
-  camera.position.set(0, 0, 25);
-  camera.lookAt(scene.position);
+const mesh = new THREE.Mesh(geometry, material);
+scene.add(mesh);
 
-  window.addEventListener(&quot;resize&quot;, () =&gt; {
-    camera.aspect = aspect;
-    camera.lookAt(scene.position);
-    camera.updateProjectionMatrix();
-    renderer.setSize(canvas.clientWidth, canvas.clientWidth / aspect);
-  });
+const gui = new dat.GUI();
+gui
+  .add(material.uniforms.uWave.value, &quot;x&quot;)
+  .min(0)
+  .max(10)
+  .step(0.01)
+  .name(&quot;waveX&quot;);
+gui
+  .add(material.uniforms.uWave.value, &quot;y&quot;)
+  .min(0)
+  .max(10)
+  .step(0.01)
+  .name(&quot;waveY&quot;);
+gui.hide();
 
-  const pointer = new THREE.Vector2(-9999, -9999);
-  const pointerEvent =
-    typeof window.ontouchstart === &quot;undefined&quot; ? &quot;pointermove&quot; : &quot;pointerenter&quot;;
+const camera = new THREE.PerspectiveCamera(
+  45,
+  canvas.clientWidth / canvas.clientHeight,
+  0.1,
+  100
+);
+camera.position.set(0, 0, 1);
+scene.add(camera);
 
-  canvas.addEventListener(pointerEvent, event =&gt; {
-    const element = event.currentTarget as HTMLCanvasElement;
-    const x = event.clientX - element.offsetLeft + window.scrollX;
-    const y = event.clientY - element.offsetTop + window.scrollY;
-    const w = element.offsetWidth;
-    const h = element.offsetHeight;
+const clock = new THREE.Clock();
 
-    pointer.x = (x / w) * 2 - 1;
-    pointer.y = -(y / h) * 2 + 1;
-  });
+const loop = () =&gt; {
+  const elapsedTime = clock.getElapsedTime();
+  material.uniforms.uTime.value = elapsedTime;
 
-  const raycaster = new THREE.Raycaster();
-  const renderScene = () =&gt; {
-    raycaster.setFromCamera(pointer, camera);
-    const intersects = raycaster.intersectObjects(scene.children);
-
-    if (intersects.length &gt; 0) {
-      intersects[0].object.rotation.x += 0.01;
-      intersects[0].object.rotation.y += 0.01;
-      intersects[0].object.rotation.z += 0.01;
-    }
-
-    renderer.render(scene, camera);
-    requestAnimationFrame(renderScene);
-  };
-
-  renderScene();
+  renderer.render(scene, camera);
+  window.requestAnimationFrame(loop);
 };
 
-window.addEventListener(&quot;load&quot;, init);</code></pre>
+loop();
+
+window.addEventListener(&quot;resize&quot;, () =&gt; {
+  camera.aspect = aspect;
+  camera.updateProjectionMatrix();
+
+  renderer.setSize(canvas.clientWidth, canvas.clientWidth / aspect);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+});</code></pre>
                 </div>
               </details>
             </div>
