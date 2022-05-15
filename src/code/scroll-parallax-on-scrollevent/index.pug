@@ -28,24 +28,19 @@ block code-css
   padding: 0 1rem;
   text-align: center;
 }
-.section:nth-child(1) {
-  background: aqua;
-}
-.section:nth-child(2) {
-  background: salmon;
-}
-.section:nth-child(3) {
-  background: greenyellow;
-}
-.section:nth-child(4) {
-  background: pink;
+$colors: aqua, salmon, greenyellow, pink;
+@each $color in $colors {
+  $i: index($colors, $color);
+  .section:nth-child(#{$i}) {
+    background: $color;
+  }
 }
 .container {
   position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 400px;
+  max-width: 500px;
   height: 100%;
   margin: 0 auto;
 }
@@ -76,7 +71,7 @@ block code-css
   width: 200px;
   height: 200px;
   margin: auto;
-  transition: transfrom 0.2s ease;
+  transition: all 0.3s ease-out;
   will-change: transform;
 }`)
 block code-ts
