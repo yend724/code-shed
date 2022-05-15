@@ -4,19 +4,19 @@
 @use "./foundation/base";
 //code-info
 #code-info {
-	//
-	// Layout
-	//
-	&.l-layout {
-		position: fixed;
+  //
+  // Layout
+  //
+  &.l-layout {
+    position: fixed;
     top: 0;
     left: 0;
-		width: 100%;
+    width: 100%;
     height: var(--window-h-full, 100vh);
     pointer-events: none;
     overflow: hidden;
     z-index: 2;
-	}
+  }
   .l-wrapper {
     position: absolute;
     top: 0;
@@ -25,7 +25,7 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.75);
     pointer-events: auto;
-    transition: all .3s cubic-bezier(0, 1.0, 0.85, 1);
+    transition: all 0.3s cubic-bezier(0, 1, 0.85, 1);
     &[aria-hidden="true"] {
       transform: translate(0, 0);
       visibility: hidden;
@@ -49,23 +49,23 @@
     flex-wrap: wrap;
     gap: 1rem 2rem;
   }
-	//
-	// Object
-	//
+  //
+  // Object
+  //
   .button-menu-trigger {
     position: fixed;
     right: 2rem;
     bottom: 2rem;
     width: 3rem;
     height: 3rem;
-    transition: all .2s cubic-bezier(0, 1.0, 0.85, 1);
+    transition: all 0.2s cubic-bezier(0, 1, 0.85, 1);
     z-index: 1;
     pointer-events: auto;
     @media (hover: hover) {
       &:hover {
         .button-menu-trigger {
           &__dot {
-            &:nth-of-type(3n-1){
+            &:nth-of-type(3n-1) {
               transform: scaleX(6);
             }
           }
@@ -78,28 +78,28 @@
       height: 0.5rem;
       background-color: #fff;
       transform-origin: center center;
-      transition: all .2s cubic-bezier(0, 1.0, 0.85, 1);
-      &:nth-of-type(-n+3){
+      transition: all 0.2s cubic-bezier(0, 1, 0.85, 1);
+      &:nth-of-type(-n + 3) {
         // 1 ~ 3番目
         top: 0;
       }
-      &:nth-of-type(n+4):nth-of-type(-n+6){
+      &:nth-of-type(n + 4):nth-of-type(-n + 6) {
         // 4 ~ 6番目
         top: 1.25rem;
       }
-      &:nth-of-type(n+7):nth-of-type(-n+9){
+      &:nth-of-type(n + 7):nth-of-type(-n + 9) {
         // 7 ~ 9番目
         top: 2.5rem;
       }
-      &:nth-of-type(3n-2){
+      &:nth-of-type(3n-2) {
         // 1,4,7番目
         left: 0;
       }
-      &:nth-of-type(3n-1){
+      &:nth-of-type(3n-1) {
         // 2,5,8番目
         left: 1.25rem;
       }
-      &:nth-of-type(3n){
+      &:nth-of-type(3n) {
         // 3,6,9番目
         left: 2.5rem;
       }
@@ -142,6 +142,10 @@
     font-size: 1.5rem;
     font-weight: 600;
   }
+  .post-date {
+    margin-top: 1rem;
+    font-size: 1rem;
+  }
   .code-area {
     margin-top: 3rem;
   }
@@ -151,7 +155,7 @@
   .code-title {
     cursor: pointer;
     overflow: hidden;
-    transition: color 0.2s cubic-bezier(0, 1.0, 0.85, 1);
+    transition: color 0.2s cubic-bezier(0, 1, 0.85, 1);
     @media (hover: hover) {
       &:hover {
         color: #90a4ae;
@@ -168,7 +172,7 @@
       background-size: 0% 2px;
       background-position-x: right;
       background-position-y: 1em;
-      transition: background-size 0.2s cubic-bezier(0, 1.0, 0.85, 1);
+      transition: background-size 0.2s cubic-bezier(0, 1, 0.85, 1);
       @media (hover: hover) {
         &:hover {
           background-size: 100% 2px;
@@ -180,13 +184,13 @@
 }
 // code-example
 #code-example {
-	//
-	// Layout
-	//
-	&.l-layout {
-		position: relative;
-		width: 100%;
-		min-height: var(--window-h-full, 100vh);
-		z-index: 1;
-	}
+  //
+  // Layout
+  //
+  &.l-layout {
+    position: relative;
+    width: 100%;
+    min-height: var(--window-h-full, 100vh);
+    z-index: 1;
+  }
 }

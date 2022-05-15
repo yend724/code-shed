@@ -18,6 +18,8 @@ html(lang="ja")
                 span.sns-icons__text GitHubへのリンク
           main.l-main
             h1.page-title #{current.pageTitle}
+            .post-date 投稿日:
+              time(datetime=current.date) #{current.date}
             .code-area
               block code-html
               block code-css

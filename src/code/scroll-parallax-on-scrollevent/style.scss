@@ -54,6 +54,7 @@
     width: 200px;
     height: 200px;
     margin: auto;
+    transition: transfrom 0.2s ease;
     will-change: transform;
   }
 }
