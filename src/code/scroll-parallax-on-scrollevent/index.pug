@@ -1,0 +1,166 @@
+extends /pug-modules/layouts/code
+block example
+  - for(let i = 1; i < 5; i++)
+    - let reverse = i % 2 === 0;
+    section.section
+      .container(class=(reverse ? "__reverse" : ""))
+        .text Section 0#{i}
+        .img-wrapper
+          img.img(src="https://picsum.photos/200/200?random=" + i, alt="")
+block code-html
+  +code("pug", `- for(let i = 1; i < 5; i++)
+  - let reverse = i % 2 === 0;
+  section.section
+    .container(class=(reverse ? "__reverse" : ""))
+      .text section 0#{i}
+      .img-wrapper
+        img.img(src="https://picsum.photos/200/200?random=" + i, alt="")`)
+block code-css
+  +code("scss",`.wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.section {
+  position: relative;
+  height: 100vh;
+  padding: 0 1rem;
+  text-align: center;
+}
+.section:nth-child(1) {
+  background: aqua;
+}
+.section:nth-child(2) {
+  background: salmon;
+}
+.section:nth-child(3) {
+  background: greenyellow;
+}
+.section:nth-child(4) {
+  background: pink;
+}
+.container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 400px;
+  height: 100%;
+  margin: 0 auto;
+}
+.container.__reverse {
+  flex-direction: row-reverse;
+}
+.text {
+  padding-right: 0.5rem;
+  color: #000;
+  word-break: break-all;
+}
+.container.__reverse .text {
+  padding-right: 0rem;
+  padding-left: 0.5rem;
+}
+.img-wrapper {
+  flex-shrink: 0;
+  position: relative;
+  width: 200px;
+  height: 100%;
+}
+.img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 200px;
+  height: 200px;
+  margin: auto;
+  will-change: transform;
+}`)
+block code-ts
+  +code("ts",`const html = document.documentElement;
+const itemsHTMLCollection = document.querySelectorAll(
+  ".img"
+) as NodeListOf<HTMLElement>;
+const itemsArray = Array.from(itemsHTMLCollection);
+
+// setup inpit
+const input = {
+  scrollY: {
+    start: 0,
+    end: html.scrollHeight - window.innerHeight,
+    current: 0,
+    progress: 0, // 0 ~ 1
+    range: 0,
+  },
+};
+
+// setup output
+const output = {
+  scrollY: {
+    start: 0,
+    end: (window.innerHeight - 200) / 3,
+    current: 0,
+    range: 0,
+  },
+};
+
+const updateInputs = () => {
+  input.scrollY.range = input.scrollY.end - input.scrollY.start;
+  input.scrollY.current = document.documentElement.scrollTop;
+  input.scrollY.progress =
+    (input.scrollY.current - input.scrollY.start) / input.scrollY.range;
+};
+
+const updateOutputs = () => {
+  output.scrollY.range = output.scrollY.end - output.scrollY.start;
+  output.scrollY.current =
+    output.scrollY.start + input.scrollY.progress * output.scrollY.range;
+};
+
+const updateEachPrallaxItem = () => {
+  itemsArray.forEach(item => {
+    const parentSection = item.closest(".section") as HTMLElement;
+    const parentSectionTop = parentSection.getBoundingClientRect().top;
+    const itemInput = {
+      scrollY: {
+        start: window.pageYOffset + parentSectionTop,
+        end: window.pageYOffset + parentSectionTop + window.innerHeight,
+        range: 0,
+        progress: 0,
+      },
+    };
+    itemInput.scrollY.range = itemInput.scrollY.end - itemInput.scrollY.start;
+    itemInput.scrollY.progress =
+      (input.scrollY.current - itemInput.scrollY.start) /
+      itemInput.scrollY.range;
+
+    const itemOutput = { y: 0 };
+    itemOutput.y =
+      output.scrollY.start + itemInput.scrollY.progress * output.scrollY.range;
+    item.style.transform = \`translateY(\${itemOutput.y}px)\`;
+  });
+};
+
+const init = () => {
+  updateInputs();
+  updateOutputs();
+  updateEachPrallaxItem();
+};
+
+const handleScroll = () => {
+  updateInputs();
+  updateOutputs();
+  updateEachPrallaxItem();
+};
+
+const handleResize = () => {
+  updateInputs();
+  updateOutputs();
+  updateEachPrallaxItem();
+};
+
+window.addEventListener("load", init);
+window.addEventListener("scroll", handleScroll);
+window.addEventListener("resize", handleResize);`)

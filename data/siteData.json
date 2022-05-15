@@ -1,52 +1,58 @@
 {
-	"siteName": "Code Shed",
-	"meta": {
-		"description": "フロントエンドエンジニアのコード置き場",
-		"ogimg": "https://code-shed.dev/img/og.png"
-	},
-	"pages": [
-		{
-			"pageTitle": "Three.jsとShaderを使って画像をゆらゆらさせる",
-			"path": "/code/threejs-shader-texture-wave/",
-			"date": "2022-05-14",
-			"category": "code"
-		},
-		{
-			"pageTitle": "3Dホバーエフェクト（カードUI）",
-			"path": "/code/card-3d-hover-effect/",
-			"date": "2022-05-05",
-			"category": "code"
-		},
-		{
-			"pageTitle": "マウスによるパララックス（フルスクラッチ）",
-			"path": "/code/mouse-parallax-full-scratch/",
-			"date": "2022-05-05",
-			"category": "code"
-		},
-		{
-			"pageTitle": "SVGでstrokeのテキストアニメーション",
-			"path": "/code/text-stroke-animation/",
-			"category": "code"
-		},
-		{
-			"pageTitle": "CSSのtext-shadowでテキストの3D表現",
-			"path": "/code/css-textshadow-3d/",
-			"category": "code"
-		},
-		{
-			"pageTitle": "ドーナツセレクタ",
-			"path": "/code/donut-selector/",
-			"category": "code"
-		},
-		{
-			"pageTitle": "Three.jsのRaycasterで交差をしらべる",
-			"path": "/code/threejs-raycaster/",
-			"category": "code"
-		},
-		{
-			"pageTitle": "Code Shed",
-			"path": "/",
-			"category": "top"
-		}
-	]
+  "siteName": "Code Shed",
+  "meta": {
+    "description": "フロントエンドエンジニアのコード置き場",
+    "ogimg": "https://code-shed.dev/img/og.png"
+  },
+  "pages": [
+    {
+      "pageTitle": "スクロールイベントによるパララックス",
+      "path": "/code/scroll-parallax-on-scrollevent/",
+      "date": "2022-05-15",
+      "category": "code"
+    },
+    {
+      "pageTitle": "Three.jsとShaderを使って画像をゆらゆらさせる",
+      "path": "/code/threejs-shader-texture-wave/",
+      "date": "2022-05-14",
+      "category": "code"
+    },
+    {
+      "pageTitle": "3Dホバーエフェクト（カードUI）",
+      "path": "/code/card-3d-hover-effect/",
+      "date": "2022-05-05",
+      "category": "code"
+    },
+    {
+      "pageTitle": "マウスによるパララックス（フルスクラッチ）",
+      "path": "/code/mouse-parallax-full-scratch/",
+      "date": "2022-05-05",
+      "category": "code"
+    },
+    {
+      "pageTitle": "SVGでstrokeのテキストアニメーション",
+      "path": "/code/text-stroke-animation/",
+      "category": "code"
+    },
+    {
+      "pageTitle": "CSSのtext-shadowでテキストの3D表現",
+      "path": "/code/css-textshadow-3d/",
+      "category": "code"
+    },
+    {
+      "pageTitle": "ドーナツセレクタ",
+      "path": "/code/donut-selector/",
+      "category": "code"
+    },
+    {
+      "pageTitle": "Three.jsのRaycasterで交差をしらべる",
+      "path": "/code/threejs-raycaster/",
+      "category": "code"
+    },
+    {
+      "pageTitle": "Code Shed",
+      "path": "/",
+      "category": "top"
+    }
+  ]
 }
