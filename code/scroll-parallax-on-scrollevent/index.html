@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <title>スクロールイベントによるパララックス | Code Shed</title>
+    <meta name="description" content="フロントエンドエンジニアのコード置き場">
+    <meta property="og:site_name" content="Code Shed">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="スクロールイベントによるパララックス | Code Shed">
+    <meta property="og:description" content="フロントエンドエンジニアのコード置き場">
+    <meta property="og:image" content="https://code-shed.dev/img/og.png">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:site" content="@yend724">
+    <meta property="twitter:creator" content="@yend724">
+    <link rel="canonical" href="https://code-shed.dev/code/scroll-parallax-on-scrollevent/">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&amp;display=swap">
+    <script type="module" crossorigin src="/assets/code-scroll-parallax-on-scrollevent-index.d40c170d.js"></script>
+    <link rel="modulepreload" href="/assets/setWindowSize.73fff501.js">
+    <link rel="modulepreload" href="/assets/code.39a88454.js">
+    <link rel="stylesheet" href="/assets/setWindowSize.f6135944.css">
+    <link rel="stylesheet" href="/assets/code.1d46a780.css">
+    <link rel="stylesheet" href="/assets/code-scroll-parallax-on-scrollevent-index.40fba197.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5QEMC1D1CN"></script>
+    <script>window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag("js", new Date());
+          gtag("config", "G-5QEMC1D1CN");</script>
+  </head>
+  <body>
+    <div class="l-layout" id="code-info">
+      <button class="button-menu-trigger" aria-expanded="false" aria-controls="menu" aria-label="メニューを開く" data-menu-trigger="menu"><span class="button-menu-trigger__dot"></span><span class="button-menu-trigger__dot"></span><span class="button-menu-trigger__dot"></span><span class="button-menu-trigger__dot"></span><span class="button-menu-trigger__dot"></span><span class="button-menu-trigger__dot"></span><span class="button-menu-trigger__dot"></span><span class="button-menu-trigger__dot"></span><span class="button-menu-trigger__dot"></span>
+      </button>
+      <div class="l-wrapper" id="menu" aria-hidden="true">
+        <div class="l-content">
+          <header class="l-header">
+            <div class="sns-icons"><a class="fa-brands fa-twitter sns-icons__item" href="https://twitter.com/yend724" target="_blank" rel="noopener noreferrer"><span class="sns-icons__text">Twitterへのリンク</span></a><a class="fa-brands fa-github sns-icons__item" href="https://github.com/yend724/code-shed" target="_blank" rel="noopener noreferrer"><span class="sns-icons__text">GitHubへのリンク</span></a></div>
+          </header>
+          <main class="l-main">
+            <h1 class="page-title">スクロールイベントによるパララックス</h1>
+            <div class="code-area">
+              <details class="code">
+                <summary class="code-title"><span class="code-title__text" data-text="Pug">Pug</span></summary>
+                <div class="code-content">
+                  <pre><code class="language-pug">- for(let i = 1; i &lt; 5; i++)
+  - let reverse = i % 2 === 0;
+  section.section
+    .container(class=(reverse ? &quot;__reverse&quot; : &quot;&quot;))
+      .text section 0#{i}
+      .img-wrapper
+        img.img(src=&quot;https://picsum.photos/200/200?random=&quot; + i, alt=&quot;&quot;)</code></pre>
+                </div>
+              </details>
+              <details class="code">
+                <summary class="code-title"><span class="code-title__text" data-text="SCSS">SCSS</span></summary>
+                <div class="code-content">
+                  <pre><code class="language-scss">.wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.section {
+  position: relative;
+  height: 100vh;
+  padding: 0 1rem;
+  text-align: center;
+}
+.section:nth-child(1) {
+  background: aqua;
+}
+.section:nth-child(2) {
+  background: salmon;
+}
+.section:nth-child(3) {
+  background: greenyellow;
+}
+.section:nth-child(4) {
+  background: pink;
+}
+.container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 400px;
+  height: 100%;
+  margin: 0 auto;
+}
+.container.__reverse {
+  flex-direction: row-reverse;
+}
+.text {
+  padding-right: 0.5rem;
+  color: #000;
+  word-break: break-all;
+}
+.container.__reverse .text {
+  padding-right: 0rem;
+  padding-left: 0.5rem;
+}
+.img-wrapper {
+  flex-shrink: 0;
+  position: relative;
+  width: 200px;
+  height: 100%;
+}
+.img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 200px;
+  height: 200px;
+  margin: auto;
+  will-change: transform;
+}</code></pre>
+                </div>
+              </details>
+              <details class="code">
+                <summary class="code-title"><span class="code-title__text" data-text="TypeScript">TypeScript</span></summary>
+                <div class="code-content">
+                  <pre><code class="language-ts">const html = document.documentElement;
+const itemsHTMLCollection = document.querySelectorAll(
+  &quot;.img&quot;
+) as NodeListOf&lt;HTMLElement&gt;;
+const itemsArray = Array.from(itemsHTMLCollection);
+
+// setup inpit
+const input = {
+  scrollY: {
+    start: 0,
+    end: html.scrollHeight - window.innerHeight,
+    current: 0,
+    progress: 0, // 0 ~ 1
+    range: 0,
+  },
+};
+
+// setup output
+const output = {
+  scrollY: {
+    start: 0,
+    end: (window.innerHeight - 200) / 3,
+    current: 0,
+    range: 0,
+  },
+};
+
+const updateInputs = () =&gt; {
+  input.scrollY.range = input.scrollY.end - input.scrollY.start;
+  input.scrollY.current = document.documentElement.scrollTop;
+  input.scrollY.progress =
+    (input.scrollY.current - input.scrollY.start) / input.scrollY.range;
+};
+
+const updateOutputs = () =&gt; {
+  output.scrollY.range = output.scrollY.end - output.scrollY.start;
+  output.scrollY.current =
+    output.scrollY.start + input.scrollY.progress * output.scrollY.range;
+};
+
+const updateEachPrallaxItem = () =&gt; {
+  itemsArray.forEach(item =&gt; {
+    const parentSection = item.closest(&quot;.section&quot;) as HTMLElement;
+    const parentSectionTop = parentSection.getBoundingClientRect().top;
+    const itemInput = {
+      scrollY: {
+        start: window.pageYOffset + parentSectionTop,
+        end: window.pageYOffset + parentSectionTop + window.innerHeight,
+        range: 0,
+        progress: 0,
+      },
+    };
+    itemInput.scrollY.range = itemInput.scrollY.end - itemInput.scrollY.start;
+    itemInput.scrollY.progress =
+      (input.scrollY.current - itemInput.scrollY.start) /
+      itemInput.scrollY.range;
+
+    const itemOutput = { y: 0 };
+    itemOutput.y =
+      output.scrollY.start + itemInput.scrollY.progress * output.scrollY.range;
+    item.style.transform = `translateY(${itemOutput.y}px)`;
+  });
+};
+
+const init = () =&gt; {
+  updateInputs();
+  updateOutputs();
+  updateEachPrallaxItem();
+};
+
+const handleScroll = () =&gt; {
+  updateInputs();
+  updateOutputs();
+  updateEachPrallaxItem();
+};
+
+const handleResize = () =&gt; {
+  updateInputs();
+  updateOutputs();
+  updateEachPrallaxItem();
+};
+
+window.addEventListener(&quot;load&quot;, init);
+window.addEventListener(&quot;scroll&quot;, handleScroll);
+window.addEventListener(&quot;resize&quot;, handleResize);</code></pre>
+                </div>
+              </details>
+            </div>
+            <div class="to-top"><a class="to-top__link" href="/">Topへもどる</a></div>
+          </main>
+        </div>
+      </div>
+    </div>
+    <div class="l-layout" id="code-example">
+      <section class="section">
+        <div class="container">
+          <div class="text">Section 01</div>
+          <div class="img-wrapper"><img class="img" src="https://picsum.photos/200/200?random=1" alt=""></div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container __reverse">
+          <div class="text">Section 02</div>
+          <div class="img-wrapper"><img class="img" src="https://picsum.photos/200/200?random=2" alt=""></div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container">
+          <div class="text">Section 03</div>
+          <div class="img-wrapper"><img class="img" src="https://picsum.photos/200/200?random=3" alt=""></div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container __reverse">
+          <div class="text">Section 04</div>
+          <div class="img-wrapper"><img class="img" src="https://picsum.photos/200/200?random=4" alt=""></div>
+        </div>
+      </section>
+    </div>
+    
+    
+  </body>
+</html>
