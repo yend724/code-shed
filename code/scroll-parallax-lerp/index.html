@@ -5,17 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#000000">
-    <title>Three.jsのRaycasterで交差をしらべる | Code Shed</title>
+    <title>線形補間を用いた追従エフェクト | Code Shed</title>
     <meta name="description" content="フロントエンドエンジニアのコード置き場">
     <meta property="og:site_name" content="Code Shed">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Three.jsのRaycasterで交差をしらべる | Code Shed">
+    <meta property="og:title" content="線形補間を用いた追従エフェクト | Code Shed">
     <meta property="og:description" content="フロントエンドエンジニアのコード置き場">
     <meta property="og:image" content="https://code-shed.dev/img/og.png">
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:site" content="@yend724">
     <meta property="twitter:creator" content="@yend724">
-    <link rel="canonical" href="https://code-shed.dev/code/threejs-raycaster/">
+    <link rel="canonical" href="https://code-shed.dev/code/scroll-parallax-lerp/">
     <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
     <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
@@ -23,13 +23,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&amp;display=swap">
-    <script type="module" crossorigin src="/assets/code-threejs-raycaster-index.8fd3bd67.js"></script>
+    <script type="module" crossorigin src="/assets/code-scroll-parallax-lerp-index.c33bf3ce.js"></script>
     <link rel="modulepreload" href="/assets/setWindowSize.73fff501.js">
     <link rel="modulepreload" href="/assets/code.39a88454.js">
-    <link rel="modulepreload" href="/assets/three.module.1d482df2.js">
     <link rel="stylesheet" href="/assets/setWindowSize.f6135944.css">
     <link rel="stylesheet" href="/assets/code.d0226b51.css">
-    <link rel="stylesheet" href="/assets/code-threejs-raycaster-index.f04099cb.css">
+    <link rel="stylesheet" href="/assets/code-scroll-parallax-lerp-index.3f3aa66e.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5QEMC1D1CN"></script>
     <script>window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -46,120 +45,83 @@
             <div class="sns-icons"><a class="fa-brands fa-twitter sns-icons__item" href="https://twitter.com/yend724" target="_blank" rel="noopener noreferrer"><span class="sns-icons__text">Twitterへのリンク</span></a><a class="fa-brands fa-github sns-icons__item" href="https://github.com/yend724/code-shed" target="_blank" rel="noopener noreferrer"><span class="sns-icons__text">GitHubへのリンク</span></a></div>
           </header>
           <main class="l-main">
-            <h1 class="page-title">Three.jsのRaycasterで交差をしらべる</h1>
+            <h1 class="page-title">線形補間を用いた追従エフェクト</h1>
             <div class="post-date">投稿日:
-              <time datetime="2022-05-01">2022-05-01</time>
+              <time datetime="2022-05-16">2022-05-16</time>
             </div>
             <div class="code-area">
               <details class="code">
                 <summary class="code-title"><span class="code-title__text" data-text="Pug">Pug</span></summary>
                 <div class="code-content">
                   <pre><code class="language-pug">.wrapper
-  canvas#canvas</code></pre>
+  - for(let i = 1; i &lt; 6; i++)
+    - let reverse = i % 2 === 0;
+    .container
+      .box(data-scroll=&quot;follow&quot;)
+      .box.__2 0#{i}</code></pre>
                 </div>
               </details>
               <details class="code">
-                <summary class="code-title"><span class="code-title__text" data-text="CSS">CSS</span></summary>
+                <summary class="code-title"><span class="code-title__text" data-text="SCSS">SCSS</span></summary>
                 <div class="code-content">
-                  <pre><code class="language-css">.wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
+                  <pre><code class="language-scss">.wrapper {
+  position: relative;
   width: 100%;
   height: 100%;
+  overflow: hidden;
+  background-color: #efefef;
 }
-canvas {
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  min-width: 100%;
-  max-width: 100%;
-  aspect-ratio: 16/9;
+  min-height: 100vh;
+  + .container {
+    border-top: 2px solid lightblue;
+  }
+}
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  background-color: darkcyan;
+  font-size: 20px;
+  font-weight: bold;
+  will-change: transform;
+  &amp;.__2 {
+    background-color: darksalmon;
+  }
 }</code></pre>
                 </div>
               </details>
               <details class="code">
                 <summary class="code-title"><span class="code-title__text" data-text="TypeScript">TypeScript</span></summary>
                 <div class="code-content">
-                  <pre><code class="language-ts">import &quot;./style.scss&quot;;
-import * as THREE from &quot;three&quot;;
+                  <pre><code class="language-ts">const html = document.documentElement;
+const targetsHTMLCollection = document.querySelectorAll(
+  &quot;*[data-scroll]&quot;
+) as NodeListOf&lt;HTMLElement&gt;;
+const targets = Array.from(targetsHTMLCollection);
 
-const aspect = 16 / 9;
-
-const init = () =&gt; {
-  const canvas = document.querySelector(&quot;#canvas&quot;) as HTMLCanvasElement;
-
-  const scene = new THREE.Scene();
-
-  const renderer = new THREE.WebGL1Renderer({
-    canvas: canvas,
-    alpha: true,
-  });
-  renderer.setClearColor(0x000000, 0);
-  renderer.setSize(canvas.clientWidth, canvas.clientWidth / aspect);
-  renderer.setPixelRatio(window.devicePixelRatio);
-
-  const boxGeometory = new THREE.BoxGeometry(6, 6, 6);
-  const boxMaterial = new THREE.MeshNormalMaterial();
-
-  const boxes = Array.from({ length: 3 }).map((_, i) =&gt; {
-    const box = new THREE.Mesh(boxGeometory, boxMaterial);
-    box.position.x = (i - 1) * 11;
-    return box;
-  });
-
-  scene.add(...boxes);
-
-  const camera = new THREE.PerspectiveCamera(
-    45,
-    canvas.clientWidth / canvas.clientHeight,
-    0.1,
-    100
-  );
-  camera.position.set(0, 0, 25);
-  camera.lookAt(scene.position);
-
-  window.addEventListener(&quot;resize&quot;, () =&gt; {
-    camera.aspect = aspect;
-    camera.lookAt(scene.position);
-    camera.updateProjectionMatrix();
-    renderer.setSize(canvas.clientWidth, canvas.clientWidth / aspect);
-  });
-
-  const pointer = new THREE.Vector2(-9999, -9999);
-  const pointerEvent =
-    typeof window.ontouchstart === &quot;undefined&quot; ? &quot;pointermove&quot; : &quot;pointerenter&quot;;
-
-  canvas.addEventListener(pointerEvent, event =&gt; {
-    const element = event.currentTarget as HTMLCanvasElement;
-    const x = event.clientX - element.offsetLeft + window.scrollX;
-    const y = event.clientY - element.offsetTop + window.scrollY;
-    const w = element.offsetWidth;
-    const h = element.offsetHeight;
-
-    pointer.x = (x / w) * 2 - 1;
-    pointer.y = -(y / h) * 2 + 1;
-  });
-
-  const raycaster = new THREE.Raycaster();
-  const renderScene = () =&gt; {
-    raycaster.setFromCamera(pointer, camera);
-    const intersects = raycaster.intersectObjects(scene.children);
-
-    if (intersects.length &gt; 0) {
-      intersects[0].object.rotation.x += 0.01;
-      intersects[0].object.rotation.y += 0.01;
-      intersects[0].object.rotation.z += 0.01;
-    }
-
-    renderer.render(scene, camera);
-    requestAnimationFrame(renderScene);
-  };
-
-  renderScene();
+const lerp = (a: number, b: number, t: number) =&gt; {
+  return (1 - t) * a + t * b;
 };
 
-window.addEventListener(&quot;load&quot;, init);</code></pre>
+let diffY = 0;
+let targetScrollY = 0;
+const loop = () =&gt; {
+  const windowScrollY = html.scrollTop;
+  targetScrollY = lerp(targetScrollY, windowScrollY, 0.1);
+  diffY = Math.round((windowScrollY - targetScrollY) * 10) / 10;
+  targets.forEach(target =&gt; {
+    target.style.transform = `translateY(undefinedpx)`;
+  });
+  requestAnimationFrame(loop);
+};
+loop();</code></pre>
                 </div>
               </details>
             </div>
@@ -169,8 +131,26 @@ window.addEventListener(&quot;load&quot;, init);</code></pre>
       </div>
     </div>
     <div class="l-layout" id="code-example">
-      <div class="wrapper">
-        <canvas id="canvas"></canvas>
+      <div class="wrapper"></div>
+      <div class="container">
+        <div class="box" data-scroll="follow"></div>
+        <div class="box __2">01</div>
+      </div>
+      <div class="container">
+        <div class="box" data-scroll="follow"></div>
+        <div class="box __2">02</div>
+      </div>
+      <div class="container">
+        <div class="box" data-scroll="follow"></div>
+        <div class="box __2">03</div>
+      </div>
+      <div class="container">
+        <div class="box" data-scroll="follow"></div>
+        <div class="box __2">04</div>
+      </div>
+      <div class="container">
+        <div class="box" data-scroll="follow"></div>
+        <div class="box __2">05</div>
       </div>
     </div>
     
