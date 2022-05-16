@@ -6,6 +6,12 @@
   },
   "pages": [
     {
+      "pageTitle": "線形補間を用いた追従エフェクト",
+      "path": "/code/scroll-parallax-lerp/",
+      "date": "2022-05-16",
+      "category": "code"
+    },
+    {
       "pageTitle": "スクロールイベントによるパララックス",
       "path": "/code/scroll-parallax-on-scrollevent/",
       "date": "2022-05-15",

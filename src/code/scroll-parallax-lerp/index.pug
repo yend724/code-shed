@@ -1,0 +1,70 @@
+extends /pug-modules/layouts/code
+block example
+  .wrapper
+  - for(let i = 1; i < 6; i++)
+    - let reverse = i % 2 === 0;
+    .container
+      .box(data-scroll="follow")
+      .box.__2 0#{i}
+block code-html
+  +code("pug", `.wrapper
+  - for(let i = 1; i < 6; i++)
+    - let reverse = i % 2 === 0;
+    .container
+      .box(data-scroll="follow")
+      .box.__2 0#{i}`)
+block code-css
+  +code("scss",`.wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #efefef;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  + .container {
+    border-top: 2px solid lightblue;
+  }
+}
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  background-color: darkcyan;
+  font-size: 20px;
+  font-weight: bold;
+  will-change: transform;
+  &.__2 {
+    background-color: darksalmon;
+  }
+}`)
+block code-ts
+  +code("ts",`const html = document.documentElement;
+const targetsHTMLCollection = document.querySelectorAll(
+  "*[data-scroll]"
+) as NodeListOf<HTMLElement>;
+const targets = Array.from(targetsHTMLCollection);
+
+const lerp = (a: number, b: number, t: number) => {
+  return (1 - t) * a + t * b;
+};
+
+let diffY = 0;
+let targetScrollY = 0;
+const loop = () => {
+  const windowScrollY = html.scrollTop;
+  targetScrollY = lerp(targetScrollY, windowScrollY, 0.1);
+  diffY = Math.round((windowScrollY - targetScrollY) * 10) / 10;
+  targets.forEach(target => {
+    target.style.transform = \`translateY(${diffY}px)\`;
+  });
+  requestAnimationFrame(loop);
+};
+loop();`)
