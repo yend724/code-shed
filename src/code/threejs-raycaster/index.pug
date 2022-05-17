@@ -2,10 +2,9 @@ extends /pug-modules/layouts/code
 block example
   .wrapper
     canvas#canvas
-block code-html
+block codes
   +code("pug", `.wrapper
   canvas#canvas`)
-block code-css
   +code("css", `.wrapper {
   position: absolute;
   top: 0;
@@ -21,7 +20,6 @@ canvas {
   max-width: 100%;
   aspect-ratio: 16/9;
 }`)
-block code-ts
   +code("ts",`import "./style.scss";
 import * as THREE from "three";
 

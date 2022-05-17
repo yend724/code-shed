@@ -5,13 +5,12 @@ block example
       - var chars = ["C","S","S"]
       each char in chars
         span.char(data-char=char) #{char}
-block code-html
+block codes
   +code("pug", `.container
   p.text
     - var chars = ["C","S","S"]
     each char in chars
       span.char(data-char=char) #{char}`)
-block code-css
   +code("scss",`@use "sass:math";
 .container {
   display: flex;

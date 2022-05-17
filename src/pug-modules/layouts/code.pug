@@ -1,6 +1,6 @@
 include /pug-modules/mixins/code
 doctype html
-html(lang="ja")
+html(lang="ja")(data-fixed="false")
   head
     include /pug-modules/includes/head.pug
   body
@@ -21,6 +21,7 @@ html(lang="ja")
             .post-date 投稿日:
               time(datetime=current.date) #{current.date}
             .code-area
+              block codes
               block code-html
               block code-css
               block code-ts

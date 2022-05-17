@@ -2,20 +2,13 @@ extends /pug-modules/layouts/code
 block example
   .wrapper
     .container.js-container
-      .item(data-depth="0")
-      .item(data-depth="0.25")
-      .item(data-depth="0.5")
-      .item(data-depth="0.75")
-      .item(data-depth="1")
-block code-html
+      - for(let i = 0; i < 5; i++)
+        .item(data-depth=(i*0.25))
+block codes
   +code("pug", `.wrapper
   .container.js-container
-    .item(data-depth="0")
-    .item(data-depth="0.25")
-    .item(data-depth="0.5")
-    .item(data-depth="0.75")
-    .item(data-depth="1")`)
-block code-css
+    - for(let i = 0; i < 5; i++)
+      .item(data-depth=(i*0.25))`)
   +code("scss",`.wrapper {
   position: relative;
 }
@@ -54,7 +47,6 @@ block code-css
     background-color:salmon;
   }
 }`)
-block code-ts
   +code("ts",`// html
 const itemsHTMLCollection = document.querySelectorAll(
   ".js-container > .item"

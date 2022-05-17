@@ -8,7 +8,7 @@ block example
         .card__title(data-text="タイトル") タイトル
         .card__body(data-text="テキストが入ります") テキストが入ります
         a.card__link(href="/" data-text="Topへもどる") Topへもどる
-block code-html
+block codes
   +code("pug", `.wrapper
   #js-card-container.container
     .card
@@ -17,7 +17,6 @@ block code-html
       .card__title(data-text="タイトル") タイトル
       .card__body(data-text="テキストが入ります") テキストが入ります
       a.card__link(href="/" data-text="Topへもどる") Topへもどる`)
-block code-css
   +code("scss",`.wrapper {
   width: 100%;
   min-height: var(--window-h-full, 100vh);
@@ -107,8 +106,6 @@ block code-css
     }
   }
 }`)
-
-block code-ts
   +code("ts", `type InputArgs = {
   start: number;
   end: number;

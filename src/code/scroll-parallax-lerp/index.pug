@@ -6,14 +6,13 @@ block example
     .container
       .box(data-scroll="follow")
       .box.__2 0#{i}
-block code-html
+block codes
   +code("pug", `.wrapper
   - for(let i = 1; i < 6; i++)
     - let reverse = i % 2 === 0;
     .container
       .box(data-scroll="follow")
       .box.__2 0#{i}`)
-block code-css
   +code("scss",`.wrapper {
   position: relative;
   width: 100%;
@@ -45,8 +44,8 @@ block code-css
     background-color: darksalmon;
   }
 }`)
-block code-ts
-  +code("ts",`const html = document.documentElement;
+  +code("ts",`import "./style.scss";
+const html = document.documentElement;
 const targetsHTMLCollection = document.querySelectorAll(
   "*[data-scroll]"
 ) as NodeListOf<HTMLElement>;
@@ -58,12 +57,17 @@ const lerp = (a: number, b: number, t: number) => {
 
 let diffY = 0;
 let targetScrollY = 0;
+let windowScrollY = html.scrollTop;
 const loop = () => {
-  const windowScrollY = html.scrollTop;
+  windowScrollY = html.scrollTop;
+  if (document.documentElement.dataset["fixed"] === "true") {
+    const top = parseInt(document.body.style.top, 10);
+    windowScrollY = top * -1;
+  }
   targetScrollY = lerp(targetScrollY, windowScrollY, 0.1);
   diffY = Math.round((windowScrollY - targetScrollY) * 10) / 10;
   targets.forEach(target => {
-    target.style.transform = \`translateY(${diffY}px)\`;
+    target.style.transform = \`translateY(\${diffY}px)\`;
   });
   requestAnimationFrame(loop);
 };

@@ -11,8 +11,13 @@ const lerp = (a: number, b: number, t: number) => {
 
 let diffY = 0;
 let targetScrollY = 0;
+let windowScrollY = html.scrollTop;
 const loop = () => {
-  const windowScrollY = html.scrollTop;
+  windowScrollY = html.scrollTop;
+  if (document.documentElement.dataset["fixed"] === "true") {
+    const top = parseInt(document.body.style.top, 10);
+    windowScrollY = top * -1;
+  }
   targetScrollY = lerp(targetScrollY, windowScrollY, 0.1);
   diffY = Math.round((windowScrollY - targetScrollY) * 10) / 10;
   targets.forEach(target => {

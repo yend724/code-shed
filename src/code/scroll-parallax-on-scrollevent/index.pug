@@ -7,7 +7,7 @@ block example
         .text Section 0#{i}
         .img-wrapper
           img.img(src="https://picsum.photos/200/200?random=" + i, alt="")
-block code-html
+block codes
   +code("pug", `- for(let i = 1; i < 5; i++)
   - let reverse = i % 2 === 0;
   section.section
@@ -15,7 +15,6 @@ block code-html
       .text section 0#{i}
       .img-wrapper
         img.img(src="https://picsum.photos/200/200?random=" + i, alt="")`)
-block code-css
   +code("scss",`.wrapper {
   position: relative;
   width: 100%;
@@ -74,7 +73,6 @@ $colors: aqua, salmon, greenyellow, pink;
   transition: all 0.3s cubic-bezier(0.01, 0.35, 0, 0.95);
   will-change: transform;
 }`)
-block code-ts
   +code("ts",`const html = document.documentElement;
 const itemsHTMLCollection = document.querySelectorAll(
   ".img"

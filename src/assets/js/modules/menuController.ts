@@ -94,6 +94,7 @@ export const menuController = () => {
       const scrollY = bool
         ? document.documentElement.scrollTop
         : parseInt(document.body.style.top || "0");
+      document.documentElement.dataset["fixed"] = "true";
       const styles = {
         position: "fixed",
         top: `${scrollY * -1}px`,
@@ -105,7 +106,10 @@ export const menuController = () => {
         const style = key as keyof typeof styles;
         document.body.style[style] = bool ? styles[style] : "";
       });
-      if (!bool) window.scrollTo(0, scrollY * -1);
+      if (!bool) {
+        window.scrollTo(0, scrollY * -1);
+        document.documentElement.dataset["fixed"] = "false";
+      }
     }
 
     getFocusableNodes() {
