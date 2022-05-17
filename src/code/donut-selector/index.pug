@@ -11,7 +11,7 @@ block example
       p article > p
       div
         p article > div > p
-block code-html
+block codes
   +code("html")
     :code-html
       p articleの外
@@ -24,8 +24,7 @@ block code-html
             p article > h2 > div > p
         p article > p
         div
-          p article > div > p
-block code-css
+          p article > div > pblock codes
   +code("css",`article p:not(h2 > *) {
   background-color: skyblue;
 }
