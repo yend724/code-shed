@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" data-fixed="false">
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,9 +23,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&amp;display=swap">
-    <script type="module" crossorigin src="/assets/code-scroll-parallax-lerp-index.c33bf3ce.js"></script>
+    <script type="module" crossorigin src="/assets/code-scroll-parallax-lerp-index.0f9089e4.js"></script>
     <link rel="modulepreload" href="/assets/setWindowSize.73fff501.js">
-    <link rel="modulepreload" href="/assets/code.39a88454.js">
+    <link rel="modulepreload" href="/assets/code.c9d20024.js">
     <link rel="stylesheet" href="/assets/setWindowSize.f6135944.css">
     <link rel="stylesheet" href="/assets/code.d0226b51.css">
     <link rel="stylesheet" href="/assets/code-scroll-parallax-lerp-index.3f3aa66e.css">
@@ -100,7 +100,8 @@
               <details class="code">
                 <summary class="code-title"><span class="code-title__text" data-text="TypeScript">TypeScript</span></summary>
                 <div class="code-content">
-                  <pre><code class="language-ts">const html = document.documentElement;
+                  <pre><code class="language-ts">import &quot;./style.scss&quot;;
+const html = document.documentElement;
 const targetsHTMLCollection = document.querySelectorAll(
   &quot;*[data-scroll]&quot;
 ) as NodeListOf&lt;HTMLElement&gt;;
@@ -112,12 +113,17 @@ const lerp = (a: number, b: number, t: number) =&gt; {
 
 let diffY = 0;
 let targetScrollY = 0;
+let windowScrollY = html.scrollTop;
 const loop = () =&gt; {
-  const windowScrollY = html.scrollTop;
+  windowScrollY = html.scrollTop;
+  if (document.documentElement.dataset[&quot;fixed&quot;] === &quot;true&quot;) {
+    const top = parseInt(document.body.style.top, 10);
+    windowScrollY = top * -1;
+  }
   targetScrollY = lerp(targetScrollY, windowScrollY, 0.1);
   diffY = Math.round((windowScrollY - targetScrollY) * 10) / 10;
   targets.forEach(target =&gt; {
-    target.style.transform = `translateY(undefinedpx)`;
+    target.style.transform = `translateY(${diffY}px)`;
   });
   requestAnimationFrame(loop);
 };

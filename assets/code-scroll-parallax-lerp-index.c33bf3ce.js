@@ -1,1 +1,0 @@
-import"./setWindowSize.73fff501.js";import"./code.39a88454.js";const c=document.documentElement,s=document.querySelectorAll("*[data-scroll]"),a=Array.from(s),m=(t,o,e)=>(1-e)*t+e*o;let l=0,r=0;const n=()=>{const t=c.scrollTop;r=m(r,t,.1),l=Math.round((t-r)*10)/10,a.forEach(o=>{o.style.transform=`translateY(${l}px)`}),requestAnimationFrame(n)};n();
