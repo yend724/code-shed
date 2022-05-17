@@ -20,11 +20,11 @@ export const menuController = () => {
     constructor({ id, trigger }: { id: string; trigger: string }) {
       const menuTarget = document.getElementById(id);
       const menuTrigger = document.querySelector(trigger) as HTMLElement | null;
-      if(!menuTarget){
-        throw new Error("idが存在しません")
+      if (!menuTarget) {
+        throw new Error("idが存在しません");
       }
-      if(!menuTrigger){
-        throw new Error("triggerが存在しません")
+      if (!menuTrigger) {
+        throw new Error("triggerが存在しません");
       }
       this.menuTarget = menuTarget;
       this.menuTrigger = menuTrigger;
@@ -80,8 +80,8 @@ export const menuController = () => {
       this.bgScrollBehavior(false);
 
       // focusTrap
-      if(this.focusedElementBefore){
-        this.focusedElementBefore.focus()
+      if (this.focusedElementBefore) {
+        this.focusedElementBefore.focus();
       }
     }
 
@@ -95,12 +95,10 @@ export const menuController = () => {
         ? document.documentElement.scrollTop
         : parseInt(document.body.style.top || "0");
       const styles = {
-        height: "100vh",
-        left: "0",
-        overflow: "hidden",
         position: "fixed",
         top: `${scrollY * -1}px`,
-        width: "100vw",
+        left: "0",
+        overflow: "hidden",
       };
 
       Object.keys(styles).forEach(key => {
@@ -156,8 +154,8 @@ export const menuController = () => {
   };
   const destroy = () => {
     if (!menu) return console.error("メニューが存在しません");
-    menu.destroy()
-  }
+    menu.destroy();
+  };
 
   return { init, open, close, destroy };
 };
