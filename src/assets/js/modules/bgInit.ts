@@ -18,26 +18,26 @@ const handleMouseEnter = (e: Event) => {
     focusedLinkIndex = Number(index);
   }
 };
-const handleMouseLeave = () => {
-  focusedLinkIndex = 0;
-};
 linksList.forEach(link => {
   if (link instanceof HTMLElement) {
     pageArray.push({ text: link.textContent || "" });
   }
   link.addEventListener("mouseenter", handleMouseEnter);
-  link.addEventListener("mouseleave", handleMouseLeave);
 });
 
 const bgInit = () => {
+  const canvas = document.getElementById("canvas") as HTMLCanvasElement;
+  const canvasSize = {
+    w: canvas.parentElement!.clientWidth,
+    h: canvas.parentElement!.clientHeight,
+  };
   const scene = new THREE.Scene();
-  scene.fog = new THREE.Fog(0x000, 50, 150);
 
   const renderer = new THREE.WebGL1Renderer({
-    canvas: document.querySelector("#bgCanvas") as HTMLCanvasElement,
+    canvas: canvas,
   });
   renderer.setClearColor(new THREE.Color(0x000));
-  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setSize(canvasSize.w, canvasSize.h);
   renderer.setPixelRatio(window.devicePixelRatio);
 
   let texts: {
@@ -49,13 +49,13 @@ const bgInit = () => {
     texts = pageArray.map(v => {
       const geometry = new TextGeometry(v.text, {
         font: font,
-        size: 0.5,
-        height: 0.3,
+        size: 2,
+        height: 0.5,
       });
       geometry.center();
       const material = new THREE.MeshNormalMaterial({
         transparent: true,
-        opacity: 1,
+        opacity: 0,
       });
       const mesh = new THREE.Mesh(geometry, material);
       scene.add(mesh);
@@ -66,31 +66,32 @@ const bgInit = () => {
     });
   });
 
-  const camera = new THREE.PerspectiveCamera(
-    45,
-    window.innerWidth / window.innerHeight,
+  const camera = new THREE.OrthographicCamera(
+    -canvasSize.w / 16,
+    canvasSize.w / 16,
+    canvasSize.h / 16,
+    -canvasSize.h / 16,
     0.1,
-    500
+    20
   );
-  camera.position.set(0, 0, 25);
+  camera.position.set(0, 0, 10);
   camera.lookAt(scene.position);
 
   // const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
   // directionalLight.position.set(0, 50, 100);
   // scene.add(directionalLight);
 
-  let mouseX = 0;
-  let mouseY = 0;
-  window.addEventListener("mousemove", e => {
-    mouseX = e.clientX / window.innerWidth - 0.5;
-    mouseY = e.clientY / window.innerHeight - 0.5;
-  });
-
   window.addEventListener("resize", () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
+    canvasSize.w = canvas.parentElement!.clientWidth;
+    canvasSize.h = canvas.parentElement!.clientHeight;
+    camera.left = -canvasSize.w / 16;
+    camera.right = canvasSize.w / 16;
+    camera.top = canvasSize.h / 16;
+    camera.bottom = -canvasSize.h / 16;
     camera.updateProjectionMatrix();
     camera.lookAt(0, 0, 0);
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(canvasSize.w, canvasSize.h);
+    renderer.setPixelRatio(window.devicePixelRatio);
   });
 
   let previousTimestamp = 0;
@@ -102,44 +103,32 @@ const bgInit = () => {
       texts.forEach((text, i) => {
         const { target, material } = text;
         const targetOpaciry = material.opacity;
-        const targetZ = target.position.z;
+        const targetY = target.position.y;
 
         if (i === focusedLinkIndex) {
-          let opacity = lerp(targetOpaciry, 1, elapsedTime * 2);
-          let z = lerp(targetZ, 0, elapsedTime * 2);
+          let opacity = lerp(targetOpaciry, 1, elapsedTime * 4);
+          let y = lerp(targetY, 0, elapsedTime * 2);
           if (opacity > 0.95) {
             opacity = 1;
           }
           material.opacity = opacity;
-          target.position.z = z;
+          target.position.y = y;
         } else {
-          let opacity = lerp(targetOpaciry, 0, elapsedTime * 2);
-          if (opacity < 0.01) {
+          let opacity = lerp(targetOpaciry, 0, elapsedTime * 4);
+          let y = lerp(targetY, -2, elapsedTime * 2);
+          if (opacity < 0.05) {
             opacity = 0;
           }
           material.opacity = opacity;
+          target.position.y = y;
         }
 
         if (material.opacity === 0) {
-          target.position.z = -3;
+          target.position.y = 2;
         }
-
-        target.rotation.z = Math.sin(ts / 1000) * 0.1;
       });
     }
 
-    const cameraPos = {
-      x: mouseX * 10,
-      y: mouseY * 10 * -1,
-    };
-    camera.position.x += (cameraPos.x - camera.position.x) * 0.03;
-    camera.position.y += (cameraPos.y - camera.position.y) * 0.03;
-    const cameraLookAt = {
-      x: camera.position.x / 3,
-      y: camera.position.y / 3,
-      z: 0,
-    };
-    camera.lookAt(cameraLookAt.x, cameraLookAt.y, cameraLookAt.z);
     renderer.render(scene, camera);
     requestAnimationFrame(renderScene);
   };

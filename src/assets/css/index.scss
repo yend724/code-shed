@@ -13,17 +13,9 @@
   grid-template-columns: 1fr;
   overflow: hidden;
 }
-.l-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: var(--window-h-full, 100vh);
-  grid-row: 1 / 1;
-  grid-column: 1 /1;
-}
 .l-content {
   display: grid;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto auto 1fr;
   min-height: var(--window-h-full, 100vh);
   grid-row: 1 / 1;
   grid-column: 1 /1;
@@ -34,19 +26,41 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem 2rem;
-  padding: 2rem;
+  padding: 1rem 2rem;
   text-shadow: 0 0 0.5em rgba(0, 0, 0, 0.8);
 }
+.l-canvas {
+  position: relative;
+  overflow: hidden;
+  height: 100px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0.9, 0.85, 1);
+  canvas {
+    width: 100%;
+    height: 100%;
+  }
+  &.__animated {
+    opacity: 1;
+    visibility: visible;
+  }
+}
 .l-main {
-  padding: 2rem;
+  padding: 0 2rem 2rem;
   max-width: var(--window-w-full);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0.9, 0.85, 1);
+  &.__animated {
+    opacity: 1;
+    visibility: visible;
+  }
 }
 //
 // Object
 //
 .link-list {
-  margin-top: 2rem;
-  color: #fff;
+  color: #4fc3f7;
   list-style: square inside;
   text-shadow: 0 0 0.5em rgba(0, 0, 0, 0.8);
   &__item {
@@ -56,7 +70,7 @@
     position: relative;
     font-size: 1rem;
     padding-bottom: 4px;
-    background-image: linear-gradient(to right, #fff, #fff);
+    background-image: linear-gradient(to right, #4fc3f7, #4fc3f7);
     background-repeat: no-repeat;
     background-size: 0% 2px;
     background-position-x: right;
@@ -74,10 +88,43 @@
   text-shadow: 0 0 0.5em rgba(0, 0, 0, 0.8);
 }
 .site-title {
+  position: relative;
+  overflow: hidden;
   font-size: 1.25rem;
   font-weight: 600;
+  $this: #{&};
   > * {
     white-space: nowrap;
+  }
+  &__text {
+    visibility: hidden;
+    opacity: 0;
+    animation: title-text-animation 0.5s cubic-bezier(0, 1, 0.85, 1) 1 both;
+    animation-play-state: paused;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    transform: translateX(-100%);
+    transform-origin: left center;
+    animation: title-slide-animation 0.5s cubic-bezier(0, 1, 0.85, 1) 0.1s 1
+      both;
+    animation-play-state: paused;
+  }
+  &.__animated {
+    &::after {
+      animation-play-state: running;
+    }
+    #{$this} {
+      &__text {
+        animation-play-state: running;
+      }
+    }
   }
 }
 .sns-icons {
@@ -86,6 +133,9 @@
   align-items: center;
   justify-content: flex-end;
   gap: 2rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0.9, 0.85, 1);
   &__icon {
     font-size: 1.5rem;
     white-space: nowrap;
@@ -97,72 +147,12 @@
     overflow: hidden;
     white-space: nowrap;
   }
+  &.__animated {
+    opacity: 1;
+    visibility: visible;
+  }
 }
 
-// loading animation
-[data-loaded] {
-  .l-bg {
-    visibility: hidden;
-    opacity: 0;
-    transform: scale(1.1);
-    filter: blur(8px);
-  }
-  .l-main,
-  .sns-icons {
-    visibility: hidden;
-    opacity: 0;
-  }
-  .site-title {
-    position: relative;
-    overflow: hidden;
-    &__text {
-      visibility: hidden;
-      opacity: 0;
-      animation: title-text-animation 0.5s cubic-bezier(0, 1, 0.85, 1) 0.1s 1
-        both;
-      animation-play-state: paused;
-    }
-    &::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #fff;
-      transform: translateX(-100%);
-      transform-origin: left center;
-      animation: title-slide-animation 0.5s cubic-bezier(0, 1, 0.85, 1) 0.1s 1
-        both;
-      animation-play-state: paused;
-    }
-  }
-}
-[data-loaded="true"] {
-  .l-bg {
-    visibility: visible;
-    opacity: 1;
-    transform: scale(1);
-    filter: blur(0);
-    transition: all 0.3s cubic-bezier(0, 1, 0.85, 1);
-    transition-delay: 0.8s;
-  }
-  .l-main,
-  .sns-icons {
-    visibility: visible;
-    opacity: 1;
-    transition: all 0.3s cubic-bezier(0, 1, 0.85, 1);
-    transition-delay: 0.8s;
-  }
-  .site-title {
-    &::after {
-      animation-play-state: running;
-    }
-    &__text {
-      animation-play-state: running;
-    }
-  }
-}
 @keyframes title-text-animation {
   0%,
   33% {
