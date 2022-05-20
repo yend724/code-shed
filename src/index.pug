@@ -17,9 +17,9 @@ html(lang="ja")
               span.sns-icons__text GitHubへのリンク
         main.l-main
           p.site-description #{meta.description}
-          ul.link-list
-            each page in pages
+          ul#js-link-list.link-list
+            each page, i in pages
               if page.category === "code"
                 li.link-list__item
-                  a.link-list__link(href=page.path) #{page.pageTitle}
-    script(src="/assets/js/index.ts" type="module")
+                  a.link-list__link(href=page.path, data-index=i+1) #{page.pageTitle}
+    script(src="/assets/js/index.ts" type="module" defer)
