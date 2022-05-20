@@ -1,11 +1,15 @@
 import * as THREE from "three";
 import { FontLoader } from "three/examples/jsm/loaders/FontLoader";
 import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry";
+import UAParser from "ua-parser-js";
 import { lerp } from "./lerp";
 
+const parser = new UAParser();
+const ua = parser.getResult();
+const isPC = !(ua.device.type === "mobile" || ua.device.type === "tablet");
 const pageArray = [
   {
-    text: "Code Shed",
+    text: "YENDのコード置き場",
   },
 ];
 
@@ -21,6 +25,9 @@ const handleMouseEnter = (e: Event) => {
 linksList.forEach(link => {
   if (link instanceof HTMLElement) {
     pageArray.push({ text: link.textContent || "" });
+  }
+  if (!isPC) {
+    return;
   }
   link.addEventListener("mouseenter", handleMouseEnter);
 });
@@ -53,7 +60,9 @@ const bgInit = () => {
         height: 0.5,
       });
       geometry.center();
-      const material = new THREE.MeshNormalMaterial({
+      const material = new THREE.MeshStandardMaterial({
+        color: 0xffffff,
+        roughness: 0,
         transparent: true,
         opacity: 0,
       });
@@ -77,9 +86,9 @@ const bgInit = () => {
   camera.position.set(0, 0, 10);
   camera.lookAt(scene.position);
 
-  // const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
-  // directionalLight.position.set(0, 50, 100);
-  // scene.add(directionalLight);
+  const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
+  directionalLight.position.set(0, 50, 50);
+  scene.add(directionalLight);
 
   window.addEventListener("resize", () => {
     canvasSize.w = canvas.parentElement!.clientWidth;
@@ -103,29 +112,17 @@ const bgInit = () => {
       texts.forEach((text, i) => {
         const { target, material } = text;
         const targetOpaciry = material.opacity;
-        const targetY = target.position.y;
-
+        const targetScale = target.scale.x;
         if (i === focusedLinkIndex) {
-          let opacity = lerp(targetOpaciry, 1, elapsedTime * 4);
-          let y = lerp(targetY, 0, elapsedTime * 2);
-          if (opacity > 0.95) {
-            opacity = 1;
-          }
-          material.opacity = opacity;
-          target.position.y = y;
-        } else {
-          let opacity = lerp(targetOpaciry, 0, elapsedTime * 4);
-          let y = lerp(targetY, -2, elapsedTime * 2);
-          if (opacity < 0.05) {
-            opacity = 0;
-          }
-          material.opacity = opacity;
-          target.position.y = y;
-        }
+          const progressOpaciry = lerp(targetOpaciry, 1, elapsedTime * 4);
+          const progressScale = lerp(targetScale, 1, elapsedTime * 4);
 
-        if (material.opacity === 0) {
-          target.position.y = 2;
+          material.opacity = progressOpaciry;
+          target.scale.set(progressScale, progressScale, progressScale);
+          return;
         }
+        material.opacity = 0;
+        target.scale.set(0.5, 0.5, 0.5);
       });
     }
 

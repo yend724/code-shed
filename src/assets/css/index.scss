@@ -99,7 +99,7 @@
   &__text {
     visibility: hidden;
     opacity: 0;
-    animation: title-text-animation 0.5s cubic-bezier(0, 1, 0.85, 1) 1 both;
+    animation: title-text-animation 0.5s cubic-bezier(0, 1, 0.85, 1) 0.1s both;
     animation-play-state: paused;
   }
   &::after {
@@ -112,8 +112,7 @@
     background-color: #fff;
     transform: translateX(-100%);
     transform-origin: left center;
-    animation: title-slide-animation 0.5s cubic-bezier(0, 1, 0.85, 1) 0.1s 1
-      both;
+    animation: title-slide-animation 0.5s cubic-bezier(0, 1, 0.85, 1) 0.1s both;
     animation-play-state: paused;
   }
   &.__animated {

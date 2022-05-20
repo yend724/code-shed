@@ -22,8 +22,8 @@ const load = () => {
     },
     { once: true }
   );
-
   siteTitle.classList.add("__animated");
+
   // three.js
   bgInit();
 };
