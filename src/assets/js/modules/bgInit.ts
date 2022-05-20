@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { FontLoader } from "three/examples/jsm/loaders/FontLoader";
 import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry";
+
 const pageData = [
   {
     pageTitle: "線形補間を用いた追従エフェクト",
@@ -80,7 +81,7 @@ const bgInit = () => {
     speed: number;
   }[] = [];
   const fontloader = new FontLoader();
-  fontloader.load("/assets/fonts/BIZUDPGothic_Bold.json", font => {
+  fontloader.load("/fonts/BIZUDPGothic_Bold.json", font => {
     const titleGeometory = new TextGeometry("Code Shed", {
       font: font,
       size: 0.5,
