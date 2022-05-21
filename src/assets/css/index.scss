@@ -15,7 +15,7 @@
 }
 .l-content {
   display: grid;
-  grid-template-rows: auto auto 1fr;
+  grid-template-rows: auto 1fr;
   min-height: var(--window-h-full, 100vh);
   grid-row: 1 / 1;
   grid-column: 1 /1;
@@ -60,6 +60,7 @@
 // Object
 //
 .link-list {
+  margin-top: 4rem;
   color: #4fc3f7;
   list-style: square inside;
   text-shadow: 0 0 0.5em rgba(0, 0, 0, 0.8);

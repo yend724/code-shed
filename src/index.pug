@@ -13,10 +13,10 @@ html(lang="ja")
               span.sns-icons__text Twitterへのリンク
             a.fa-brands.fa-github.sns-icons__icon(href="https://github.com/yend724/code-shed" target="_blank" rel="noopener noreferrer")
               span.sns-icons__text GitHubへのリンク
-        .l-canvas#js-l-canvas
-          canvas#canvas
+        //- .l-canvas#js-l-canvas
+        //-   canvas#canvas
         main#js-l-main.l-main
-          //- p.site-description #{meta.description}
+          p.site-description #{meta.description}
           ul#js-link-list.link-list
             each page, i in pages
               if page.category === "code"
