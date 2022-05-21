@@ -1,0 +1,20 @@
+#code-example {
+  .wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    min-height: var(--window-w-full, 100vh);
+  }
+  canvas {
+    display: block;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    aspect-ratio: 12/15;
+    margin: 0 auto;
+  }
+}

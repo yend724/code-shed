@@ -6,6 +6,12 @@
   },
   "pages": [
     {
+      "pageTitle": "画像のピクセルシャワー",
+      "path": "/code/img-pixel-rain/",
+      "date": "2022-05-21",
+      "category": "code"
+    },
+    {
       "pageTitle": "線形補間を用いた追従エフェクト",
       "path": "/code/scroll-parallax-lerp/",
       "date": "2022-05-16",
