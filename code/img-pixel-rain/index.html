@@ -28,7 +28,7 @@
     <link rel="modulepreload" href="/assets/code.8b1fe1af.js">
     <link rel="stylesheet" href="/assets/setWindowSize.f6135944.css">
     <link rel="stylesheet" href="/assets/code.d0226b51.css">
-    <link rel="stylesheet" href="/assets/code-img-pixel-rain-index.f62ee84f.css">
+    <link rel="stylesheet" href="/assets/code-img-pixel-rain-index.bf029ce4.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5QEMC1D1CN"></script>
     <script>window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -60,10 +60,14 @@
               <details class="code">
                 <summary class="code-title"><span class="code-title__text" data-text="SCSS">SCSS</span></summary>
                 <div class="code-content">
-                  <pre><code class="language-scss">.wrapper {
+                  <pre><code class="language-scss"> .wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
   min-height: var(--window-w-full, 100vh);
 }
 canvas {
